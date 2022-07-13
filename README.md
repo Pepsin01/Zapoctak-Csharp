@@ -16,5 +16,3 @@ Application on the host machine will run http server and handle the whole game l
 while application on the client machine will only display current game state and send requests to the server.
 Prerequisite is that both machines are connected via LAN or the hosting machine has public IP address.
 The displaying to the player should be implemented by some sort of UI framework like WinFroms or WPF.
-
-
