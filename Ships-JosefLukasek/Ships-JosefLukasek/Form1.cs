@@ -17,5 +17,24 @@ namespace Ships_JosefLukasek
             InitializeComponent();
         }
 
+        enum ScreenState { FULLSCREEN, BORDERED };
+        ScreenState screenState = ScreenState.BORDERED;
+        private void fullscreenBtn_Click(object sender, EventArgs e)
+        {
+            if (screenState == ScreenState.BORDERED)
+            {
+                this.TopMost = true;
+                this.FormBorderStyle = FormBorderStyle.None;
+                this.WindowState = FormWindowState.Maximized;
+                screenState = ScreenState.FULLSCREEN;
+            }
+            else
+            {
+                this.TopMost = false;
+                this.FormBorderStyle = FormBorderStyle.Sizable;
+                this.WindowState = FormWindowState.Normal;
+                screenState = ScreenState.BORDERED;
+            }
+        }
     }
 }
