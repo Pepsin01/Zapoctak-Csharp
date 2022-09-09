@@ -101,24 +101,26 @@ namespace Ships_JosefLukasek
     }
     internal class GamePlan
     {
-        Form1 form;
+        ShipsForm form;
         Square[,] grid;
-        int squareSize = 30;
+        int squareSize = 40;
         int defaultLeft;
         int defaultTop;
         int[] ships = new[]{ 4, 3, 2, 1 };
         public PlanState state { get; set; }
         Ship? currentShip;
         Button lastlyHoveredOn;
+        Action<bool> shootCallBack;
 
-        public GamePlan(Form1 form)
+        public GamePlan(ShipsForm form, int defaultLeft, int defaultTop, Action<bool> shootCallBack)
         {
             this.form = form;
-            defaultLeft = (form.ClientRectangle.Width / 2) - (10 * squareSize);
-            defaultTop = (form.ClientRectangle.Height / 2) - (10 * squareSize);
+            this.defaultLeft = defaultLeft;
+            this.defaultTop = defaultTop;
+            this.shootCallBack = shootCallBack;
             grid = CreatePlan();
             state = PlanState.Standby;
-            RefreshColors();
+            RefreshPlacingGraphics();
         }
 
         Square[,] CreatePlan()
@@ -189,13 +191,20 @@ namespace Ships_JosefLukasek
                     break;
                 case PlanState.Placing:
                     PlaceCurrShip(BtnToCoordinates(btn), true);
-                    RefreshColors(); 
+                    RefreshPlacingGraphics(); 
                     break;
                 case PlanState.Standby:
                     RemoveShip(BtnToCoordinates(btn));
-                    RefreshColors();
+                    RefreshPlacingGraphics();
                     break;
                 case PlanState.Hidden:
+                    if (!IsHit(BtnToCoordinates(btn)))
+                    {
+                        bool wasHit = ShootOnSquare(BtnToCoordinates(btn));
+                        RefreshInGameGraphics();
+                        state = PlanState.Locked;
+                        shootCallBack.Invoke(wasHit);
+                    }
                     break;
                 default:
                     break;
@@ -205,7 +214,7 @@ namespace Ships_JosefLukasek
 
         public void OnPlanHover(object? sender, EventArgs? e)
         {
-            RefreshColors();
+            RefreshPlacingGraphics();
             Button btn = (Button) (sender ?? lastlyHoveredOn);
 
             switch (state)
@@ -409,15 +418,63 @@ namespace Ships_JosefLukasek
             OnPlanHover(null, null);
         }
 
-        void RefreshColors()
+        void RefreshPlacingGraphics()
         {
             foreach (var s in grid)
             {
                 if (s.ship != null)
+                {
                     s.button.BackColor = Color.FromArgb(87, 36, 1);
+                    s.button.Image = Image.FromFile("graphics/mapShip.png");
+                }
                 else
+                {
                     s.button.BackColor = Color.FromArgb(2, 12, 189);
+                    s.button.Image = Image.FromFile("graphics/water.png");
+                }
             }
+        }
+
+        void RefreshInGameGraphics()
+        {
+            if (PlanState.Hidden == state)
+            {
+                foreach (var s in grid)
+                {
+                    if (s.ship != null && s.State == SquareState.Hit)
+                    {
+                        s.button.BackColor = Color.FromArgb(87, 36, 1);
+                        s.button.Image = Image.FromFile("graphics/hitCross.png");
+                    }
+                    else if (s.State == SquareState.Hit)
+                    {
+                        s.button.BackColor = Color.FromArgb(2, 12, 189);
+                        s.button.Image = Image.FromFile("graphics/water.png");
+                    }
+                    else
+                    {
+                        s.button.BackColor = Color.LightGray;
+                        s.button.Image = null;
+                    }
+                }
+            }
+            else
+            {
+                foreach (var s in grid)
+                {
+                    if (s.ship != null)
+                    {
+                        s.button.BackColor = Color.FromArgb(87, 36, 1);
+                        s.button.Image = Image.FromFile("graphics/mapShip.png");
+                    }
+                    else
+                    {
+                        s.button.BackColor = Color.FromArgb(2, 12, 189);
+                        s.button.Image = Image.FromFile("graphics/water.png");
+                    }
+                }
+            }
+
         }
 
         public override string ToString()
@@ -437,10 +494,24 @@ namespace Ships_JosefLukasek
             return result.Remove(result.Length - 1, 1).ToString();
         }
 
+        bool IsHit((int i, int j) pos)
+        {
+            if (grid[pos.i, pos.j].State == SquareState.Hit)
+                return true;
+            return false;
+        }
+        bool ShootOnSquare((int i, int j) pos)
+        {
+            grid[pos.i, pos.j].State = SquareState.Hit;
+            if (grid[pos.i, pos.j].ship != null)
+                return true;
+            return false;
+        }
+
         public void Resize()
         {
             int newLeft = (form.ClientRectangle.Width / 2) - (10 * squareSize);
-            int newTop = (form.ClientRectangle.Height / 2) - (10 * squareSize);
+            int newTop = (form.ClientRectangle.Height / 2) - (5 * squareSize);
             int diffLeft = newLeft - defaultLeft;
             int diffTop = newTop - defaultTop;
             defaultLeft = newLeft;

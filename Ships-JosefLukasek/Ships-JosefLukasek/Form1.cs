@@ -10,18 +10,18 @@ using System.Windows.Forms;
 
 namespace Ships_JosefLukasek
 {
-    public partial class Form1 : Form
+    public partial class ShipsForm : Form
     {
-        GamePlan gamePlan;
+        StateControler stateControler;
 
-        public Form1()
+        public ShipsForm()
         {
             InitializeComponent();
             HostModeBtn.Visible = false;
             JoinModeBtn.Visible = false;
             MultiBtn.Visible = false;
             SingleBtn.Visible = false;
-            gamePlan = new GamePlan(this);
+            stateControler = new StateControler(this);
         }
 
 
@@ -50,7 +50,7 @@ namespace Ships_JosefLukasek
         {
             if (true)
             {
-                gamePlan.Resize();
+                stateControler.plan.Resize();
             }
         }
 
@@ -58,33 +58,43 @@ namespace Ships_JosefLukasek
         {
             if (e.KeyCode == Keys.R)
             {
-                gamePlan.RotateCurrShip();
+                stateControler.plan.RotateCurrShip();
             }
         }
 
         private void SloopBtn_Click(object sender, EventArgs e)
         {
-            gamePlan.PickShip(1);
+            stateControler.plan.PickShip(1);
         }
 
         private void BrigBtn_Click(object sender, EventArgs e)
         {
-            gamePlan.PickShip(2);
+            stateControler.plan.PickShip(2);
         }
 
         private void FrigBtn_Click(object sender, EventArgs e)
         {
-            gamePlan.PickShip(3);
+            stateControler.plan.PickShip(3);
         }
 
         private void GallBtn_Click(object sender, EventArgs e)
         {
-            gamePlan.PickShip(4);
+            stateControler.plan.PickShip(4);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void HostModeBtn_Click(object sender, EventArgs e)
         {
-            Console.Write(gamePlan.ToString());
+            stateControler.ChangeStateTo(GameState.SetHost);
+        }
+
+        private void JoinModeBtn_Click(object sender, EventArgs e)
+        {
+            stateControler.ChangeStateTo(GameState.SetClient);
+        }
+
+        private void MultiBtn_Click(object sender, EventArgs e)
+        {
+            stateControler.ChangeStateTo(GameState.MultiMenu);
         }
     }
 }
