@@ -48,7 +48,7 @@ namespace Ships_JosefLukasek
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            if (true)
+            if (stateControler.plan is not null)
             {
                 stateControler.plan.Resize();
             }
