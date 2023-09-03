@@ -29,258 +29,271 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShipsForm));
-            this.fullscreenBtn = new System.Windows.Forms.Button();
-            this.SingleBtn = new System.Windows.Forms.Button();
-            this.MultiBtn = new System.Windows.Forms.Button();
-            this.HostModeBtn = new System.Windows.Forms.Button();
-            this.JoinModeBtn = new System.Windows.Forms.Button();
-            this.SloopBtn = new System.Windows.Forms.Button();
-            this.BrigBtn = new System.Windows.Forms.Button();
-            this.FrigBtn = new System.Windows.Forms.Button();
-            this.GallBtn = new System.Windows.Forms.Button();
-            this.ClientIpBox = new System.Windows.Forms.TextBox();
-            this.ClientPortBox = new System.Windows.Forms.TextBox();
-            this.ClientIpLabel = new System.Windows.Forms.Label();
-            this.ClientPortLabel = new System.Windows.Forms.Label();
-            this.HostPortBox = new System.Windows.Forms.TextBox();
-            this.ClientJoinBtn = new System.Windows.Forms.Button();
-            this.HostJoinBtn = new System.Windows.Forms.Button();
-            this.HostPortLabel = new System.Windows.Forms.Label();
-            this.ReadyBtn = new System.Windows.Forms.Button();
-            this.ReplayBtn = new System.Windows.Forms.Button();
-            this.MenuBtn = new System.Windows.Forms.Button();
-            this.StatusLabel = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            fullscreenBtn = new System.Windows.Forms.Button();
+            SingleBtn = new System.Windows.Forms.Button();
+            MultiBtn = new System.Windows.Forms.Button();
+            HostModeBtn = new System.Windows.Forms.Button();
+            JoinModeBtn = new System.Windows.Forms.Button();
+            SloopBtn = new System.Windows.Forms.Button();
+            BrigBtn = new System.Windows.Forms.Button();
+            FrigBtn = new System.Windows.Forms.Button();
+            GallBtn = new System.Windows.Forms.Button();
+            ClientIpBox = new System.Windows.Forms.TextBox();
+            ClientPortBox = new System.Windows.Forms.TextBox();
+            ClientIpLabel = new System.Windows.Forms.Label();
+            ClientPortLabel = new System.Windows.Forms.Label();
+            HostPortBox = new System.Windows.Forms.TextBox();
+            ClientJoinBtn = new System.Windows.Forms.Button();
+            HostJoinBtn = new System.Windows.Forms.Button();
+            HostPortLabel = new System.Windows.Forms.Label();
+            ReadyBtn = new System.Windows.Forms.Button();
+            ReplayBtn = new System.Windows.Forms.Button();
+            MenuBtn = new System.Windows.Forms.Button();
+            StatusLabel = new System.Windows.Forms.Label();
+            testMsgBtn = new System.Windows.Forms.Button();
+            SuspendLayout();
             // 
             // fullscreenBtn
             // 
-            this.fullscreenBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.fullscreenBtn.Location = new System.Drawing.Point(1025, 12);
-            this.fullscreenBtn.Name = "fullscreenBtn";
-            this.fullscreenBtn.Size = new System.Drawing.Size(107, 23);
-            this.fullscreenBtn.TabIndex = 0;
-            this.fullscreenBtn.Text = "Toggle Fullscreen";
-            this.fullscreenBtn.UseVisualStyleBackColor = true;
-            this.fullscreenBtn.Click += new System.EventHandler(this.fullscreenBtn_Click);
+            fullscreenBtn.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            fullscreenBtn.Location = new System.Drawing.Point(1025, 12);
+            fullscreenBtn.Name = "fullscreenBtn";
+            fullscreenBtn.Size = new System.Drawing.Size(107, 23);
+            fullscreenBtn.TabIndex = 0;
+            fullscreenBtn.Text = "Toggle Fullscreen";
+            fullscreenBtn.UseVisualStyleBackColor = true;
+            fullscreenBtn.Click += fullscreenBtn_Click;
             // 
             // SingleBtn
             // 
-            this.SingleBtn.Location = new System.Drawing.Point(479, 58);
-            this.SingleBtn.Name = "SingleBtn";
-            this.SingleBtn.Size = new System.Drawing.Size(153, 47);
-            this.SingleBtn.TabIndex = 1;
-            this.SingleBtn.Text = "Singleplayer";
-            this.SingleBtn.UseVisualStyleBackColor = true;
+            SingleBtn.Location = new System.Drawing.Point(479, 58);
+            SingleBtn.Name = "SingleBtn";
+            SingleBtn.Size = new System.Drawing.Size(153, 47);
+            SingleBtn.TabIndex = 1;
+            SingleBtn.Text = "Singleplayer";
+            SingleBtn.UseVisualStyleBackColor = true;
             // 
             // MultiBtn
             // 
-            this.MultiBtn.Location = new System.Drawing.Point(479, 111);
-            this.MultiBtn.Name = "MultiBtn";
-            this.MultiBtn.Size = new System.Drawing.Size(153, 43);
-            this.MultiBtn.TabIndex = 2;
-            this.MultiBtn.Text = "Multiplayer";
-            this.MultiBtn.UseVisualStyleBackColor = true;
-            this.MultiBtn.Click += new System.EventHandler(this.MultiBtn_Click);
+            MultiBtn.Location = new System.Drawing.Point(479, 111);
+            MultiBtn.Name = "MultiBtn";
+            MultiBtn.Size = new System.Drawing.Size(153, 43);
+            MultiBtn.TabIndex = 2;
+            MultiBtn.Text = "Multiplayer";
+            MultiBtn.UseVisualStyleBackColor = true;
+            MultiBtn.Click += MultiBtn_Click;
             // 
             // HostModeBtn
             // 
-            this.HostModeBtn.Location = new System.Drawing.Point(320, 58);
-            this.HostModeBtn.Name = "HostModeBtn";
-            this.HostModeBtn.Size = new System.Drawing.Size(153, 47);
-            this.HostModeBtn.TabIndex = 3;
-            this.HostModeBtn.Text = "Host game";
-            this.HostModeBtn.UseVisualStyleBackColor = true;
-            this.HostModeBtn.Visible = false;
-            this.HostModeBtn.Click += new System.EventHandler(this.HostModeBtn_Click);
+            HostModeBtn.Location = new System.Drawing.Point(320, 58);
+            HostModeBtn.Name = "HostModeBtn";
+            HostModeBtn.Size = new System.Drawing.Size(153, 47);
+            HostModeBtn.TabIndex = 3;
+            HostModeBtn.Text = "Host game";
+            HostModeBtn.UseVisualStyleBackColor = true;
+            HostModeBtn.Visible = false;
+            HostModeBtn.Click += HostModeBtn_Click;
             // 
             // JoinModeBtn
             // 
-            this.JoinModeBtn.Location = new System.Drawing.Point(320, 111);
-            this.JoinModeBtn.Name = "JoinModeBtn";
-            this.JoinModeBtn.Size = new System.Drawing.Size(153, 43);
-            this.JoinModeBtn.TabIndex = 4;
-            this.JoinModeBtn.Text = "Join game";
-            this.JoinModeBtn.UseVisualStyleBackColor = true;
-            this.JoinModeBtn.Visible = false;
-            this.JoinModeBtn.Click += new System.EventHandler(this.JoinModeBtn_Click);
+            JoinModeBtn.Location = new System.Drawing.Point(320, 111);
+            JoinModeBtn.Name = "JoinModeBtn";
+            JoinModeBtn.Size = new System.Drawing.Size(153, 43);
+            JoinModeBtn.TabIndex = 4;
+            JoinModeBtn.Text = "Join game";
+            JoinModeBtn.UseVisualStyleBackColor = true;
+            JoinModeBtn.Visible = false;
+            JoinModeBtn.Click += JoinModeBtn_Click;
             // 
             // SloopBtn
             // 
-            this.SloopBtn.Location = new System.Drawing.Point(12, 12);
-            this.SloopBtn.Name = "SloopBtn";
-            this.SloopBtn.Size = new System.Drawing.Size(123, 23);
-            this.SloopBtn.TabIndex = 5;
-            this.SloopBtn.Text = "Sloop (1x1)";
-            this.SloopBtn.UseVisualStyleBackColor = true;
-            this.SloopBtn.Click += new System.EventHandler(this.SloopBtn_Click);
+            SloopBtn.Location = new System.Drawing.Point(12, 12);
+            SloopBtn.Name = "SloopBtn";
+            SloopBtn.Size = new System.Drawing.Size(123, 23);
+            SloopBtn.TabIndex = 5;
+            SloopBtn.Text = "Sloop (1x1)";
+            SloopBtn.UseVisualStyleBackColor = true;
+            SloopBtn.Click += SloopBtn_Click;
             // 
             // BrigBtn
             // 
-            this.BrigBtn.Location = new System.Drawing.Point(12, 41);
-            this.BrigBtn.Name = "BrigBtn";
-            this.BrigBtn.Size = new System.Drawing.Size(123, 23);
-            this.BrigBtn.TabIndex = 6;
-            this.BrigBtn.Text = "Brigantine (1x2)";
-            this.BrigBtn.UseVisualStyleBackColor = true;
-            this.BrigBtn.Click += new System.EventHandler(this.BrigBtn_Click);
+            BrigBtn.Location = new System.Drawing.Point(12, 41);
+            BrigBtn.Name = "BrigBtn";
+            BrigBtn.Size = new System.Drawing.Size(123, 23);
+            BrigBtn.TabIndex = 6;
+            BrigBtn.Text = "Brigantine (1x2)";
+            BrigBtn.UseVisualStyleBackColor = true;
+            BrigBtn.Click += BrigBtn_Click;
             // 
             // FrigBtn
             // 
-            this.FrigBtn.Location = new System.Drawing.Point(12, 70);
-            this.FrigBtn.Name = "FrigBtn";
-            this.FrigBtn.Size = new System.Drawing.Size(123, 23);
-            this.FrigBtn.TabIndex = 7;
-            this.FrigBtn.Text = "Frigate (1x3)";
-            this.FrigBtn.UseVisualStyleBackColor = true;
-            this.FrigBtn.Click += new System.EventHandler(this.FrigBtn_Click);
+            FrigBtn.Location = new System.Drawing.Point(12, 70);
+            FrigBtn.Name = "FrigBtn";
+            FrigBtn.Size = new System.Drawing.Size(123, 23);
+            FrigBtn.TabIndex = 7;
+            FrigBtn.Text = "Frigate (1x3)";
+            FrigBtn.UseVisualStyleBackColor = true;
+            FrigBtn.Click += FrigBtn_Click;
             // 
             // GallBtn
             // 
-            this.GallBtn.Location = new System.Drawing.Point(12, 99);
-            this.GallBtn.Name = "GallBtn";
-            this.GallBtn.Size = new System.Drawing.Size(123, 23);
-            this.GallBtn.TabIndex = 8;
-            this.GallBtn.Text = "Galleon (1x4)";
-            this.GallBtn.UseVisualStyleBackColor = true;
-            this.GallBtn.Click += new System.EventHandler(this.GallBtn_Click);
+            GallBtn.Location = new System.Drawing.Point(12, 99);
+            GallBtn.Name = "GallBtn";
+            GallBtn.Size = new System.Drawing.Size(123, 23);
+            GallBtn.TabIndex = 8;
+            GallBtn.Text = "Galleon (1x4)";
+            GallBtn.UseVisualStyleBackColor = true;
+            GallBtn.Click += GallBtn_Click;
             // 
             // ClientIpBox
             // 
-            this.ClientIpBox.Location = new System.Drawing.Point(177, 311);
-            this.ClientIpBox.Name = "ClientIpBox";
-            this.ClientIpBox.Size = new System.Drawing.Size(100, 23);
-            this.ClientIpBox.TabIndex = 9;
+            ClientIpBox.Location = new System.Drawing.Point(177, 311);
+            ClientIpBox.Name = "ClientIpBox";
+            ClientIpBox.Size = new System.Drawing.Size(100, 23);
+            ClientIpBox.TabIndex = 9;
             // 
             // ClientPortBox
             // 
-            this.ClientPortBox.Location = new System.Drawing.Point(177, 340);
-            this.ClientPortBox.Name = "ClientPortBox";
-            this.ClientPortBox.Size = new System.Drawing.Size(100, 23);
-            this.ClientPortBox.TabIndex = 10;
+            ClientPortBox.Location = new System.Drawing.Point(177, 340);
+            ClientPortBox.Name = "ClientPortBox";
+            ClientPortBox.Size = new System.Drawing.Size(100, 23);
+            ClientPortBox.TabIndex = 10;
             // 
             // ClientIpLabel
             // 
-            this.ClientIpLabel.AutoSize = true;
-            this.ClientIpLabel.Location = new System.Drawing.Point(133, 314);
-            this.ClientIpLabel.Name = "ClientIpLabel";
-            this.ClientIpLabel.Size = new System.Drawing.Size(38, 15);
-            this.ClientIpLabel.TabIndex = 11;
-            this.ClientIpLabel.Text = "label1";
+            ClientIpLabel.AutoSize = true;
+            ClientIpLabel.Location = new System.Drawing.Point(133, 314);
+            ClientIpLabel.Name = "ClientIpLabel";
+            ClientIpLabel.Size = new System.Drawing.Size(20, 15);
+            ClientIpLabel.TabIndex = 11;
+            ClientIpLabel.Text = "IP:";
             // 
             // ClientPortLabel
             // 
-            this.ClientPortLabel.AutoSize = true;
-            this.ClientPortLabel.Location = new System.Drawing.Point(133, 343);
-            this.ClientPortLabel.Name = "ClientPortLabel";
-            this.ClientPortLabel.Size = new System.Drawing.Size(38, 15);
-            this.ClientPortLabel.TabIndex = 12;
-            this.ClientPortLabel.Text = "label1";
+            ClientPortLabel.AutoSize = true;
+            ClientPortLabel.Location = new System.Drawing.Point(133, 343);
+            ClientPortLabel.Name = "ClientPortLabel";
+            ClientPortLabel.Size = new System.Drawing.Size(32, 15);
+            ClientPortLabel.TabIndex = 12;
+            ClientPortLabel.Text = "Port:";
             // 
             // HostPortBox
             // 
-            this.HostPortBox.Location = new System.Drawing.Point(177, 436);
-            this.HostPortBox.Name = "HostPortBox";
-            this.HostPortBox.Size = new System.Drawing.Size(100, 23);
-            this.HostPortBox.TabIndex = 13;
+            HostPortBox.Location = new System.Drawing.Point(177, 436);
+            HostPortBox.Name = "HostPortBox";
+            HostPortBox.Size = new System.Drawing.Size(100, 23);
+            HostPortBox.TabIndex = 13;
             // 
             // ClientJoinBtn
             // 
-            this.ClientJoinBtn.Location = new System.Drawing.Point(177, 369);
-            this.ClientJoinBtn.Name = "ClientJoinBtn";
-            this.ClientJoinBtn.Size = new System.Drawing.Size(100, 23);
-            this.ClientJoinBtn.TabIndex = 14;
-            this.ClientJoinBtn.Text = "button1";
-            this.ClientJoinBtn.UseVisualStyleBackColor = true;
+            ClientJoinBtn.Location = new System.Drawing.Point(177, 369);
+            ClientJoinBtn.Name = "ClientJoinBtn";
+            ClientJoinBtn.Size = new System.Drawing.Size(100, 23);
+            ClientJoinBtn.TabIndex = 14;
+            ClientJoinBtn.Text = "Join";
+            ClientJoinBtn.UseVisualStyleBackColor = true;
+            ClientJoinBtn.Click += ClientJoinBtn_Click;
             // 
             // HostJoinBtn
             // 
-            this.HostJoinBtn.Location = new System.Drawing.Point(177, 465);
-            this.HostJoinBtn.Name = "HostJoinBtn";
-            this.HostJoinBtn.Size = new System.Drawing.Size(100, 23);
-            this.HostJoinBtn.TabIndex = 15;
-            this.HostJoinBtn.Text = "button1";
-            this.HostJoinBtn.UseVisualStyleBackColor = true;
+            HostJoinBtn.Location = new System.Drawing.Point(177, 465);
+            HostJoinBtn.Name = "HostJoinBtn";
+            HostJoinBtn.Size = new System.Drawing.Size(100, 23);
+            HostJoinBtn.TabIndex = 15;
+            HostJoinBtn.Text = "Host";
+            HostJoinBtn.UseVisualStyleBackColor = true;
+            HostJoinBtn.Click += HostJoinBtn_Click;
             // 
             // HostPortLabel
             // 
-            this.HostPortLabel.AutoSize = true;
-            this.HostPortLabel.Location = new System.Drawing.Point(133, 439);
-            this.HostPortLabel.Name = "HostPortLabel";
-            this.HostPortLabel.Size = new System.Drawing.Size(38, 15);
-            this.HostPortLabel.TabIndex = 16;
-            this.HostPortLabel.Text = "label1";
+            HostPortLabel.AutoSize = true;
+            HostPortLabel.Location = new System.Drawing.Point(133, 439);
+            HostPortLabel.Name = "HostPortLabel";
+            HostPortLabel.Size = new System.Drawing.Size(29, 15);
+            HostPortLabel.TabIndex = 16;
+            HostPortLabel.Text = "Port";
             // 
             // ReadyBtn
             // 
-            this.ReadyBtn.Location = new System.Drawing.Point(736, 279);
-            this.ReadyBtn.Name = "ReadyBtn";
-            this.ReadyBtn.Size = new System.Drawing.Size(75, 23);
-            this.ReadyBtn.TabIndex = 17;
-            this.ReadyBtn.Text = "button1";
-            this.ReadyBtn.UseVisualStyleBackColor = true;
+            ReadyBtn.Location = new System.Drawing.Point(736, 279);
+            ReadyBtn.Name = "ReadyBtn";
+            ReadyBtn.Size = new System.Drawing.Size(75, 23);
+            ReadyBtn.TabIndex = 17;
+            ReadyBtn.Text = "button1";
+            ReadyBtn.UseVisualStyleBackColor = true;
             // 
             // ReplayBtn
             // 
-            this.ReplayBtn.Location = new System.Drawing.Point(741, 375);
-            this.ReplayBtn.Name = "ReplayBtn";
-            this.ReplayBtn.Size = new System.Drawing.Size(75, 23);
-            this.ReplayBtn.TabIndex = 18;
-            this.ReplayBtn.Text = "button1";
-            this.ReplayBtn.UseVisualStyleBackColor = true;
+            ReplayBtn.Location = new System.Drawing.Point(741, 375);
+            ReplayBtn.Name = "ReplayBtn";
+            ReplayBtn.Size = new System.Drawing.Size(75, 23);
+            ReplayBtn.TabIndex = 18;
+            ReplayBtn.Text = "button1";
+            ReplayBtn.UseVisualStyleBackColor = true;
             // 
             // MenuBtn
             // 
-            this.MenuBtn.Location = new System.Drawing.Point(741, 404);
-            this.MenuBtn.Name = "MenuBtn";
-            this.MenuBtn.Size = new System.Drawing.Size(75, 23);
-            this.MenuBtn.TabIndex = 19;
-            this.MenuBtn.Text = "button1";
-            this.MenuBtn.UseVisualStyleBackColor = true;
+            MenuBtn.Location = new System.Drawing.Point(741, 404);
+            MenuBtn.Name = "MenuBtn";
+            MenuBtn.Size = new System.Drawing.Size(75, 23);
+            MenuBtn.TabIndex = 19;
+            MenuBtn.Text = "button1";
+            MenuBtn.UseVisualStyleBackColor = true;
             // 
             // StatusLabel
             // 
-            this.StatusLabel.AutoSize = true;
-            this.StatusLabel.Location = new System.Drawing.Point(494, 773);
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(38, 15);
-            this.StatusLabel.TabIndex = 20;
-            this.StatusLabel.Text = "label1";
+            StatusLabel.AutoSize = true;
+            StatusLabel.Location = new System.Drawing.Point(494, 773);
+            StatusLabel.Name = "StatusLabel";
+            StatusLabel.Size = new System.Drawing.Size(38, 15);
+            StatusLabel.TabIndex = 20;
+            StatusLabel.Text = "label1";
+            // 
+            // testMsgBtn
+            // 
+            testMsgBtn.Location = new System.Drawing.Point(320, 465);
+            testMsgBtn.Name = "testMsgBtn";
+            testMsgBtn.Size = new System.Drawing.Size(312, 87);
+            testMsgBtn.TabIndex = 21;
+            testMsgBtn.Text = "send test msg";
+            testMsgBtn.UseVisualStyleBackColor = true;
+            testMsgBtn.Click += testMsgBtn_Click;
             // 
             // ShipsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1144, 797);
-            this.Controls.Add(this.StatusLabel);
-            this.Controls.Add(this.MenuBtn);
-            this.Controls.Add(this.ReplayBtn);
-            this.Controls.Add(this.ReadyBtn);
-            this.Controls.Add(this.HostPortLabel);
-            this.Controls.Add(this.HostJoinBtn);
-            this.Controls.Add(this.ClientJoinBtn);
-            this.Controls.Add(this.HostPortBox);
-            this.Controls.Add(this.ClientPortLabel);
-            this.Controls.Add(this.ClientIpLabel);
-            this.Controls.Add(this.ClientPortBox);
-            this.Controls.Add(this.ClientIpBox);
-            this.Controls.Add(this.GallBtn);
-            this.Controls.Add(this.FrigBtn);
-            this.Controls.Add(this.BrigBtn);
-            this.Controls.Add(this.SloopBtn);
-            this.Controls.Add(this.JoinModeBtn);
-            this.Controls.Add(this.HostModeBtn);
-            this.Controls.Add(this.MultiBtn);
-            this.Controls.Add(this.SingleBtn);
-            this.Controls.Add(this.fullscreenBtn);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.KeyPreview = true;
-            this.Name = "ShipsForm";
-            this.Text = "Ships - Josef Lukasek";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(1144, 797);
+            Controls.Add(testMsgBtn);
+            Controls.Add(StatusLabel);
+            Controls.Add(MenuBtn);
+            Controls.Add(ReplayBtn);
+            Controls.Add(ReadyBtn);
+            Controls.Add(HostPortLabel);
+            Controls.Add(HostJoinBtn);
+            Controls.Add(ClientJoinBtn);
+            Controls.Add(HostPortBox);
+            Controls.Add(ClientPortLabel);
+            Controls.Add(ClientIpLabel);
+            Controls.Add(ClientPortBox);
+            Controls.Add(ClientIpBox);
+            Controls.Add(GallBtn);
+            Controls.Add(FrigBtn);
+            Controls.Add(BrigBtn);
+            Controls.Add(SloopBtn);
+            Controls.Add(JoinModeBtn);
+            Controls.Add(HostModeBtn);
+            Controls.Add(MultiBtn);
+            Controls.Add(SingleBtn);
+            Controls.Add(fullscreenBtn);
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
+            Name = "ShipsForm";
+            Text = "Ships - Josef Lukasek";
+            KeyDown += Form1_KeyDown;
+            Resize += Form1_Resize;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -306,5 +319,6 @@
         private System.Windows.Forms.Button ReplayBtn;
         private System.Windows.Forms.Button MenuBtn;
         private System.Windows.Forms.Label StatusLabel;
+        private System.Windows.Forms.Button testMsgBtn;
     }
 }

@@ -13,6 +13,8 @@ namespace Ships_JosefLukasek
     public partial class ShipsForm : Form
     {
         StateControler stateControler;
+        NetworkHandler networkHandler;
+        Translator translator;
 
         public ShipsForm()
         {
@@ -22,9 +24,8 @@ namespace Ships_JosefLukasek
             MultiBtn.Visible = false;
             SingleBtn.Visible = false;
             stateControler = new StateControler(this);
+            translator = new Translator(this);
         }
-
-
 
         enum ScreenState { FULLSCREEN, BORDERED };
         ScreenState screenState = ScreenState.BORDERED;
@@ -96,5 +97,23 @@ namespace Ships_JosefLukasek
         {
             stateControler.ChangeStateTo(GameState.MultiMenu);
         }
+
+        private void ClientJoinBtn_Click(object sender, EventArgs e)
+        {
+            networkHandler = new NetworkHandler(ReceiveMessage, false, "192.168.0.80", 6666);
+        }
+
+        private void HostJoinBtn_Click(object sender, EventArgs e)
+        {
+            stateControler.ChangeStateTo(GameState.Connecting);
+            networkHandler = new NetworkHandler(ReceiveMessage, true, "192.168.0.80", 6666);
+        }
+
+        private void testMsgBtn_Click(object sender, EventArgs e)
+        {
+            networkHandler.Send("test");
+        }
+
+
     }
 }

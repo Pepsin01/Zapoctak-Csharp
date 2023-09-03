@@ -20,7 +20,7 @@ namespace Ships_JosefLukasek
             GameState state;
             public StateControler(ShipsForm form)
             {
-                this.f = form;
+                f = form;
                 ChangeStateTo(GameState.MainMenu);
             }
             void CreateGamePlan()
@@ -46,10 +46,10 @@ namespace Ships_JosefLukasek
                         ShowMultiMenu();
                         break;
                     case GameState.SetHost:
-                        ShowGameHost();
+                        ShowSetHost();
                         break;
                     case GameState.SetClient:
-                        ShowGameClient();
+                        ShowSetClient();
                         break;
                     case GameState.Connecting:
                         ShowConnecting();
@@ -98,6 +98,7 @@ namespace Ships_JosefLukasek
                 f.ReplayBtn.Visible = false;
                 f.MenuBtn.Visible = false;
                 f.StatusLabel.Visible = false;
+                f.testMsgBtn.Visible = false;
             }
             void ShowMainMenu()
             {
@@ -116,6 +117,8 @@ namespace Ships_JosefLukasek
                 f.HostPortLabel.Visible = true;
                 f.HostPortBox.Visible = true;
                 f.HostJoinBtn.Visible = true;
+                f.testMsgBtn.Visible = true;
+                f.StatusLabel.Visible = true;
             }
 
             void ShowSetClient()
@@ -125,6 +128,8 @@ namespace Ships_JosefLukasek
                 f.ClientPortLabel.Visible = true;
                 f.ClientPortBox.Visible = true;
                 f.ClientJoinBtn.Visible = true;
+                f.StatusLabel.Visible = true;
+                f.testMsgBtn.Visible = true;
             }
 
             void ShowPlacing()
@@ -141,19 +146,16 @@ namespace Ships_JosefLukasek
             void ShowConnecting()
             {
                 f.StatusLabel.Visible = true;
-                f.StatusLabel.Text = "Waiting for client to join";
             }
 
             void ShowGameClient()
             {
                 f.StatusLabel.Visible = true;
-                f.StatusLabel.Text = "Successfully connected";
             }
 
             void ShowGameHost()
             {
                 f.StatusLabel.Visible = true;
-                f.StatusLabel.Text = "Successfully connected";
             }
 
             void ShowMultiGameOver()
