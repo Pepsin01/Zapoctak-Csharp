@@ -105,7 +105,7 @@ namespace Ships_JosefLukasek
             }
             private void ShootHandler(string message)
             {
-                var coords = (int.Parse(message.Split('.')[0]), int.Parse(message.Split('.')[1]));
+                var coords = (int.Parse(message.Split(',')[0]), int.Parse(message.Split(',')[1]));
                 f.stateControler.remotePlan.MarkSquareAsHit(coords);
             }
         }
