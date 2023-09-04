@@ -50,7 +50,7 @@ namespace Ships_JosefLukasek
                     }
                     else if (signature == "[SHO]")
                     {
-                        ShootHandler(message[5..].Trim());
+                        ShootHandler(msg[5..].Trim());
                     }
                 }
             }
