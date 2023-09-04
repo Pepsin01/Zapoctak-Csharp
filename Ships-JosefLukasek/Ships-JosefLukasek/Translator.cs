@@ -44,6 +44,10 @@ namespace Ships_JosefLukasek
                     {
                         ErrHandler(msg[5..].Trim());
                     }
+                    else if (signature == "[PLN]")
+                    {
+                        PlanHandler(msg[5..].Trim());
+                    }
                 }
             }
             private void StatusHandler(string message)
@@ -51,6 +55,20 @@ namespace Ships_JosefLukasek
                 if(message == "CONNECTED")
                 {
                     f.stateControler.ChangeStateTo(GameState.Placing);
+                }
+                else if (message == "READY")
+                {
+                    if (f.stateControler.localPlan.IsReady)
+                    {
+                        if (f.isHost)
+                        {
+                            f.stateControler.ChangeStateTo(GameState.GameHost);
+                        }
+                        else
+                        {
+                            f.stateControler.ChangeStateTo(GameState.GameClient);
+                        }
+                    }
                 }
                 else
                 {
@@ -72,6 +90,10 @@ namespace Ships_JosefLukasek
                 {
                     f.StatusLabel.Text = message;
                 }
+            }
+            private void PlanHandler(string message)
+            {
+                f.stateControler.remotePlan.LoadPlanFromString(message);
             }
         }
 

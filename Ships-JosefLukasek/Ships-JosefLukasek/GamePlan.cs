@@ -148,7 +148,7 @@ namespace Ships_JosefLukasek
         // Default top position of the grid.
         int defaultTop;
 
-        // Predefined lengths of ships.
+        // Predefined counts of ships.
         int[] ships = new[] { 4, 3, 2, 1 };
 
         // Current state of the game plan.
@@ -161,7 +161,10 @@ namespace Ships_JosefLukasek
         Button lastlyHoveredOn;
 
         // The callback action for shooting on a square.
-        Action<bool> shootCallBack; 
+        Action<bool, (int i, int j)> shootCallBack; 
+
+        // Indicates whether the game plan is ready to be locked.
+        public bool IsReady { get; private set; } = false;
 
         /// <summary>
         /// Initializes a new game plan with the specified form, default left and top positions, and shoot callback action.
@@ -170,7 +173,7 @@ namespace Ships_JosefLukasek
         /// <param name="defaultLeft">The default left position of the grid.</param>
         /// <param name="defaultTop">The default top position of the grid.</param>
         /// <param name="shootCallBack">The callback action for shooting on a square.</param>
-        public GamePlan(ShipsForm form, int defaultLeft, int defaultTop, Action<bool> shootCallBack)
+        public GamePlan(ShipsForm form, int defaultLeft, int defaultTop, Action<bool, (int i, int j)> shootCallBack)
         {
             this.form = form;
             this.defaultLeft = defaultLeft;
@@ -281,7 +284,7 @@ namespace Ships_JosefLukasek
                         bool wasHit = ShootOnSquare(BtnToCoordinates(btn));
                         RefreshInGameGraphics();
                         state = PlanState.Locked;
-                        shootCallBack.Invoke(wasHit);
+                        shootCallBack(wasHit, BtnToCoordinates(btn));
                     }
                     break;
                 default:
@@ -315,6 +318,36 @@ namespace Ships_JosefLukasek
                     break;
             }
             lastlyHoveredOn = btn;
+        }
+
+        /// <summary>
+        /// Marks the square as hit.
+        /// </summary>
+        /// <param name="pos"> The position of the square.</param>
+        /// <returns> True if the square exists, false otherwise.</returns>
+        public bool MarkSquareAsHit((int i, int j) pos)
+        {
+            if (IsExistingSquare(pos.i, pos.j))
+            {
+                grid[pos.i, pos.j].State = SquareState.Hit;
+                RefreshInGameGraphics();
+                return true;
+            }
+            return false;
+        }
+
+        public bool TryReadyLock()
+        {
+            foreach (int ship in ships)
+            {
+                if(ship != 0)
+                {
+                    return false;
+                }
+            }
+            state = PlanState.Locked;
+            IsReady = true;
+            return true;
         }
 
         /// <summary>
@@ -581,7 +614,7 @@ namespace Ships_JosefLukasek
         /// </summary>
         void RefreshInGameGraphics()
         {
-            if (PlanState.Hidden == state)
+            if (PlanState.Hidden == state || PlanState.Locked == state)
             {
                 foreach (var s in grid)
                 {
@@ -640,6 +673,38 @@ namespace Ships_JosefLukasek
                 result.Append("\n");
             }
             return result.Remove(result.Length - 1, 1).ToString();
+        }
+
+        /// <summary>
+        /// Loads a game plan grid from a string representation.
+        /// </summary>
+        /// <param name="plan"> The string representation of the game plan grid. </param>
+        /// <returns> True if the string was valid, otherwise false. </returns>
+        public bool LoadPlanFromString(string plan)
+        {
+            if (plan.Length != 100)
+                return false;
+            int i = 0;
+            int j = 0;
+            foreach (char c in plan)
+            {
+                if (c == 'S')
+                    grid[i, j].ship = new Ship(1);
+                else if (c != 'W')
+                    return false;
+                i++;
+                if (i == 10)
+                {
+                    i = 0;
+                    j++;
+                }
+            }
+
+            state = PlanState.Standby;
+            RefreshInGameGraphics();
+            IsReady = true;
+
+            return true;
         }
 
         /// <summary>

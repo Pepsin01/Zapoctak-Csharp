@@ -15,23 +15,34 @@ namespace Ships_JosefLukasek
     {
         internal class StateControler
         {
-            public GamePlan plan { get; private set; }
+            public GamePlan localPlan { get; private set; }
+            public GamePlan remotePlan { get; private set; }
             ShipsForm f;
-            GameState state;
+            public GameState state { get; private set; }
             public StateControler(ShipsForm form)
             {
                 f = form;
                 ChangeStateTo(GameState.MainMenu);
             }
-            void CreateGamePlan()
+            void CreateMultiGamePlan()
             {
-                plan = new GamePlan(f, (f.ClientRectangle.Width / 2) - (10 * 40), (f.ClientRectangle.Height / 2) - (5 * 40), AfterShot);
+                localPlan = new GamePlan(f, (f.ClientRectangle.Width / 2) - (10 * 40), (f.ClientRectangle.Height / 2) - (10 * 40) - 2, AfterLocalShot);
+                remotePlan = new GamePlan(f, (f.ClientRectangle.Width / 2) - (10 * 40), (f.ClientRectangle.Height / 2) + (10 * 40) + 2, AfterRemoteShot);
+                remotePlan.state = PlanState.Locked;
             }
-            void AfterShot(bool wasHit)
+            void AfterLocalShot(bool wasHit, (int i, int j) coords)
+            {
+
+            }
+            void AfterRemoteShot(bool wasHit, (int i, int j) coords)
             {
                 if (wasHit)
                 {
-
+                    remotePlan.state = PlanState.Hidden;
+                }
+                else
+                {
+                    remotePlan.state = PlanState.Locked;
                 }
             }
             public void ChangeStateTo(GameState newState)
@@ -40,36 +51,48 @@ namespace Ships_JosefLukasek
                 switch (newState)
                 {
                     case GameState.MainMenu:
+                        state = GameState.MainMenu;
                         ShowMainMenu();
                         break;
                     case GameState.MultiMenu:
+                        state = GameState.MultiMenu;
                         ShowMultiMenu();
                         break;
                     case GameState.SetHost:
+                        state = GameState.SetHost;
                         ShowSetHost();
                         break;
                     case GameState.SetClient:
+                        state = GameState.SetClient;
                         ShowSetClient();
                         break;
                     case GameState.Connecting:
+                        state = GameState.Connecting;
                         ShowConnecting();
                         break;
                     case GameState.Placing:
+                        state = GameState.Placing;
                         ShowPlacing();
                         break;
                     case GameState.GameClient:
+                        state = GameState.GameClient;
                         ShowGameClient();
                         break;
                     case GameState.GameHost:
+                        state = GameState.GameHost;
                         ShowGameHost();
                         break;
                     case GameState.MultiGameOver:
+                        state = GameState.MultiGameOver;
                         break;
                     case GameState.SinglePlacing:
+                        state = GameState.SinglePlacing;
                         break;
                     case GameState.SigleGame:
+                        state = GameState.SigleGame;
                         break;
                     case GameState.SingleGameOver:
+                        state = GameState.SingleGameOver;
                         break;
                     default:
                         break;
@@ -98,7 +121,6 @@ namespace Ships_JosefLukasek
                 f.ReplayBtn.Visible = false;
                 f.MenuBtn.Visible = false;
                 f.StatusLabel.Visible = false;
-                f.testMsgBtn.Visible = false;
             }
             void ShowMainMenu()
             {
@@ -117,7 +139,6 @@ namespace Ships_JosefLukasek
                 f.HostPortLabel.Visible = true;
                 f.HostPortBox.Visible = true;
                 f.HostJoinBtn.Visible = true;
-                f.testMsgBtn.Visible = true;
                 f.StatusLabel.Visible = true;
             }
 
@@ -129,7 +150,6 @@ namespace Ships_JosefLukasek
                 f.ClientPortBox.Visible = true;
                 f.ClientJoinBtn.Visible = true;
                 f.StatusLabel.Visible = true;
-                f.testMsgBtn.Visible = true;
             }
 
             void ShowPlacing()
@@ -141,6 +161,7 @@ namespace Ships_JosefLukasek
                 f.ReadyBtn.Visible = true;
                 f.StatusLabel.Visible = true;
                 f.StatusLabel.Text = "Place all your ships";
+                CreateMultiGamePlan();
             }
 
             void ShowConnecting()

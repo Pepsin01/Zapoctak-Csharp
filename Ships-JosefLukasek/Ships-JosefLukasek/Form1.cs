@@ -15,6 +15,7 @@ namespace Ships_JosefLukasek
         StateControler stateControler;
         NetworkHandler networkHandler;
         Translator translator;
+        bool isHost = false;
 
         public ShipsForm()
         {
@@ -49,9 +50,9 @@ namespace Ships_JosefLukasek
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            if (stateControler.plan is not null)
+            if (stateControler.localPlan is not null)
             {
-                stateControler.plan.Resize();
+                stateControler.localPlan.Resize();
             }
         }
 
@@ -59,28 +60,28 @@ namespace Ships_JosefLukasek
         {
             if (e.KeyCode == Keys.R)
             {
-                stateControler.plan.RotateCurrShip();
+                stateControler.localPlan.RotateCurrShip();
             }
         }
 
         private void SloopBtn_Click(object sender, EventArgs e)
         {
-            stateControler.plan.PickShip(1);
+            stateControler.localPlan.PickShip(1);
         }
 
         private void BrigBtn_Click(object sender, EventArgs e)
         {
-            stateControler.plan.PickShip(2);
+            stateControler.localPlan.PickShip(2);
         }
 
         private void FrigBtn_Click(object sender, EventArgs e)
         {
-            stateControler.plan.PickShip(3);
+            stateControler.localPlan.PickShip(3);
         }
 
         private void GallBtn_Click(object sender, EventArgs e)
         {
-            stateControler.plan.PickShip(4);
+            stateControler.localPlan.PickShip(4);
         }
 
         private void HostModeBtn_Click(object sender, EventArgs e)
@@ -107,13 +108,32 @@ namespace Ships_JosefLukasek
         {
             stateControler.ChangeStateTo(GameState.Connecting);
             networkHandler = new NetworkHandler(ReceiveMessage, true, "192.168.0.80", 6666);
+            isHost = true;
         }
 
-        private void testMsgBtn_Click(object sender, EventArgs e)
+        private void ReadyBtn_Click(object sender, EventArgs e)
         {
-            networkHandler.Send("test");
+            if (stateControler.localPlan.TryReadyLock())
+            {
+                networkHandler.Send("[PLN] " + stateControler.localPlan.ToString() + " <EOF>");
+                networkHandler.Send("[STS] Other player is ready <EOF>");
+                networkHandler.Send("[STS] READY <EOF>");
+            }
+            else
+            {
+                StatusLabel.Text = "You must place all ships";
+            }
+            if (stateControler.remotePlan.IsReady)
+            {
+                if (isHost)
+                {
+                    stateControler.ChangeStateTo(GameState.GameHost);
+                }
+                else
+                {
+                    stateControler.ChangeStateTo(GameState.GameClient);
+                }
+            }
         }
-
-
     }
 }

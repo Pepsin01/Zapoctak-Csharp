@@ -50,7 +50,6 @@
             ReplayBtn = new System.Windows.Forms.Button();
             MenuBtn = new System.Windows.Forms.Button();
             StatusLabel = new System.Windows.Forms.Label();
-            testMsgBtn = new System.Windows.Forms.Button();
             SuspendLayout();
             // 
             // fullscreenBtn
@@ -215,12 +214,13 @@
             // 
             // ReadyBtn
             // 
-            ReadyBtn.Location = new System.Drawing.Point(736, 279);
+            ReadyBtn.Location = new System.Drawing.Point(320, 657);
             ReadyBtn.Name = "ReadyBtn";
-            ReadyBtn.Size = new System.Drawing.Size(75, 23);
+            ReadyBtn.Size = new System.Drawing.Size(312, 66);
             ReadyBtn.TabIndex = 17;
-            ReadyBtn.Text = "button1";
+            ReadyBtn.Text = "Ready";
             ReadyBtn.UseVisualStyleBackColor = true;
+            ReadyBtn.Click += ReadyBtn_Click;
             // 
             // ReplayBtn
             // 
@@ -245,26 +245,15 @@
             StatusLabel.AutoSize = true;
             StatusLabel.Location = new System.Drawing.Point(494, 773);
             StatusLabel.Name = "StatusLabel";
-            StatusLabel.Size = new System.Drawing.Size(38, 15);
+            StatusLabel.Size = new System.Drawing.Size(67, 15);
             StatusLabel.TabIndex = 20;
-            StatusLabel.Text = "label1";
-            // 
-            // testMsgBtn
-            // 
-            testMsgBtn.Location = new System.Drawing.Point(320, 465);
-            testMsgBtn.Name = "testMsgBtn";
-            testMsgBtn.Size = new System.Drawing.Size(312, 87);
-            testMsgBtn.TabIndex = 21;
-            testMsgBtn.Text = "send test msg";
-            testMsgBtn.UseVisualStyleBackColor = true;
-            testMsgBtn.Click += testMsgBtn_Click;
+            StatusLabel.Text = "StatusLabel";
             // 
             // ShipsForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1144, 797);
-            Controls.Add(testMsgBtn);
             Controls.Add(StatusLabel);
             Controls.Add(MenuBtn);
             Controls.Add(ReplayBtn);
@@ -319,6 +308,5 @@
         private System.Windows.Forms.Button ReplayBtn;
         private System.Windows.Forms.Button MenuBtn;
         private System.Windows.Forms.Label StatusLabel;
-        private System.Windows.Forms.Button testMsgBtn;
     }
 }
