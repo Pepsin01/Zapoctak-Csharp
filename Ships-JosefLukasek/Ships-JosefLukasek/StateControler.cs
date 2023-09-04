@@ -48,8 +48,6 @@ namespace Ships_JosefLukasek
                         f.networkHandler.Send("[STS] END_GAME <EOF>");
                         localPlan?.Dispose();
                         remotePlan?.Dispose();
-                        localPlan = null;
-                        remotePlan = null;
                         ChangeStateTo(GameState.MultiGameOver);
                     }
                 }
@@ -88,6 +86,7 @@ namespace Ships_JosefLukasek
                         break;
                     case GameState.Placing:
                         state = GameState.Placing;
+                        CreateMultiGamePlan();
                         ShowPlacing();
                         break;
                     case GameState.GameClient:
@@ -100,6 +99,8 @@ namespace Ships_JosefLukasek
                         break;
                     case GameState.MultiGameOver:
                         state = GameState.MultiGameOver;
+                        localPlan = null;
+                        remotePlan = null;
                         ShowMultiGameOver();
                         break;
                     case GameState.SinglePlacing:
@@ -180,7 +181,6 @@ namespace Ships_JosefLukasek
                 f.ReadyBtn.Visible = true;
                 f.StatusLabel.Visible = true;
                 f.StatusLabel.Text = "Place all your ships";
-                CreateMultiGamePlan();
             }
 
             void ShowConnecting()

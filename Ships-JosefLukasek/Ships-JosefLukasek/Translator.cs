@@ -80,6 +80,8 @@ namespace Ships_JosefLukasek
                 }
                 else if (message == "END_GAME")
                 {
+                    f.stateControler.localPlan?.Dispose();
+                    f.stateControler.remotePlan?.Dispose();
                     f.stateControler.ChangeStateTo(GameState.MultiGameOver);
                 }
                 else

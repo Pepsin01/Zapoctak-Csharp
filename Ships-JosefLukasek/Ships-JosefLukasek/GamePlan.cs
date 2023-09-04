@@ -743,9 +743,12 @@ namespace Ships_JosefLukasek
         bool ShootOnSquare((int i, int j) pos)
         {
             grid[pos.i, pos.j].State = SquareState.Hit;
-            hitCounter++;
+
             if (grid[pos.i, pos.j].ship != null)
+            {
+                hitCounter++;
                 return true;
+            }
             return false;
         }
 
