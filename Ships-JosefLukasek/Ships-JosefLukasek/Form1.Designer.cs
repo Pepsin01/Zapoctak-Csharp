@@ -65,8 +65,8 @@
             // 
             // SingleBtn
             // 
-            SingleBtn.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            SingleBtn.Location = new System.Drawing.Point(479, 58);
+            SingleBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            SingleBtn.Location = new System.Drawing.Point(479, 287);
             SingleBtn.Name = "SingleBtn";
             SingleBtn.Size = new System.Drawing.Size(153, 47);
             SingleBtn.TabIndex = 1;
@@ -75,8 +75,8 @@
             // 
             // MultiBtn
             // 
-            MultiBtn.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            MultiBtn.Location = new System.Drawing.Point(479, 111);
+            MultiBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            MultiBtn.Location = new System.Drawing.Point(479, 340);
             MultiBtn.Name = "MultiBtn";
             MultiBtn.Size = new System.Drawing.Size(153, 43);
             MultiBtn.TabIndex = 2;
@@ -86,8 +86,8 @@
             // 
             // HostModeBtn
             // 
-            HostModeBtn.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            HostModeBtn.Location = new System.Drawing.Point(320, 58);
+            HostModeBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            HostModeBtn.Location = new System.Drawing.Point(479, 287);
             HostModeBtn.Name = "HostModeBtn";
             HostModeBtn.Size = new System.Drawing.Size(153, 47);
             HostModeBtn.TabIndex = 3;
@@ -98,8 +98,8 @@
             // 
             // JoinModeBtn
             // 
-            JoinModeBtn.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            JoinModeBtn.Location = new System.Drawing.Point(320, 111);
+            JoinModeBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            JoinModeBtn.Location = new System.Drawing.Point(479, 340);
             JoinModeBtn.Name = "JoinModeBtn";
             JoinModeBtn.Size = new System.Drawing.Size(153, 43);
             JoinModeBtn.TabIndex = 4;
@@ -229,8 +229,8 @@
             // 
             // ReplayBtn
             // 
-            ReplayBtn.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            ReplayBtn.Location = new System.Drawing.Point(638, 111);
+            ReplayBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            ReplayBtn.Location = new System.Drawing.Point(479, 343);
             ReplayBtn.Name = "ReplayBtn";
             ReplayBtn.Size = new System.Drawing.Size(153, 43);
             ReplayBtn.TabIndex = 18;
@@ -240,10 +240,10 @@
             // 
             // MenuBtn
             // 
-            MenuBtn.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            MenuBtn.Location = new System.Drawing.Point(638, 60);
+            MenuBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            MenuBtn.Location = new System.Drawing.Point(479, 287);
             MenuBtn.Name = "MenuBtn";
-            MenuBtn.Size = new System.Drawing.Size(153, 43);
+            MenuBtn.Size = new System.Drawing.Size(153, 47);
             MenuBtn.TabIndex = 19;
             MenuBtn.Text = "Main menu";
             MenuBtn.UseVisualStyleBackColor = true;
