@@ -163,5 +163,22 @@ namespace Ships_JosefLukasek
             networkHandler?.Close();
             stateControler.ChangeStateTo(GameState.MultiMenu);
         }
+
+        private void SingleBtn_Click(object sender, EventArgs e)
+        {
+            stateControler.ChangeStateTo(GameState.SinglePlacing);
+        }
+
+        private void SingleReadyBtn_Click(object sender, EventArgs e)
+        {
+            if (stateControler.localPlan.TryReadyLock())
+            {
+                stateControler.ChangeStateTo(GameState.SingleGame);
+            }
+            else
+            {
+                StatusLabel.Text = "You must place all ships";
+            }
+        }
     }
 }

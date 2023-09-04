@@ -43,11 +43,12 @@
             ClientIpLabel = new System.Windows.Forms.Label();
             ClientPortLabel = new System.Windows.Forms.Label();
             ClientJoinBtn = new System.Windows.Forms.Button();
-            ReadyBtn = new System.Windows.Forms.Button();
+            MultiReadyBtn = new System.Windows.Forms.Button();
             ReplayBtn = new System.Windows.Forms.Button();
             MenuBtn = new System.Windows.Forms.Button();
             StatusLabel = new System.Windows.Forms.Label();
             ServerHostBtn = new System.Windows.Forms.Button();
+            SingleReadyBtn = new System.Windows.Forms.Button();
             SuspendLayout();
             // 
             // fullscreenBtn
@@ -70,6 +71,7 @@
             SingleBtn.TabIndex = 1;
             SingleBtn.Text = "Singleplayer";
             SingleBtn.UseVisualStyleBackColor = true;
+            SingleBtn.Click += SingleBtn_Click;
             // 
             // MultiBtn
             // 
@@ -190,16 +192,16 @@
             ClientJoinBtn.UseVisualStyleBackColor = true;
             ClientJoinBtn.Click += ClientJoinBtn_Click;
             // 
-            // ReadyBtn
+            // MultiReadyBtn
             // 
-            ReadyBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
-            ReadyBtn.Location = new System.Drawing.Point(12, 683);
-            ReadyBtn.Name = "ReadyBtn";
-            ReadyBtn.Size = new System.Drawing.Size(312, 66);
-            ReadyBtn.TabIndex = 17;
-            ReadyBtn.Text = "Ready";
-            ReadyBtn.UseVisualStyleBackColor = true;
-            ReadyBtn.Click += ReadyBtn_Click;
+            MultiReadyBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            MultiReadyBtn.Location = new System.Drawing.Point(12, 683);
+            MultiReadyBtn.Name = "MultiReadyBtn";
+            MultiReadyBtn.Size = new System.Drawing.Size(312, 66);
+            MultiReadyBtn.TabIndex = 17;
+            MultiReadyBtn.Text = "Ready";
+            MultiReadyBtn.UseVisualStyleBackColor = true;
+            MultiReadyBtn.Click += ReadyBtn_Click;
             // 
             // ReplayBtn
             // 
@@ -244,16 +246,28 @@
             ServerHostBtn.UseVisualStyleBackColor = true;
             ServerHostBtn.Click += ServerHostBtn_Click;
             // 
+            // SingleReadyBtn
+            // 
+            SingleReadyBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            SingleReadyBtn.Location = new System.Drawing.Point(12, 683);
+            SingleReadyBtn.Name = "SingleReadyBtn";
+            SingleReadyBtn.Size = new System.Drawing.Size(312, 66);
+            SingleReadyBtn.TabIndex = 22;
+            SingleReadyBtn.Text = "Ready";
+            SingleReadyBtn.UseVisualStyleBackColor = true;
+            SingleReadyBtn.Click += SingleReadyBtn_Click;
+            // 
             // ShipsForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1084, 761);
+            Controls.Add(SingleReadyBtn);
             Controls.Add(ServerHostBtn);
             Controls.Add(StatusLabel);
             Controls.Add(MenuBtn);
             Controls.Add(ReplayBtn);
-            Controls.Add(ReadyBtn);
+            Controls.Add(MultiReadyBtn);
             Controls.Add(ClientJoinBtn);
             Controls.Add(ClientPortLabel);
             Controls.Add(ClientIpLabel);
@@ -294,10 +308,11 @@
         private System.Windows.Forms.Label ClientIpLabel;
         private System.Windows.Forms.Label ClientPortLabel;
         private System.Windows.Forms.Button ClientJoinBtn;
-        private System.Windows.Forms.Button ReadyBtn;
+        private System.Windows.Forms.Button MultiReadyBtn;
         private System.Windows.Forms.Button ReplayBtn;
         private System.Windows.Forms.Button MenuBtn;
         private System.Windows.Forms.Label StatusLabel;
         private System.Windows.Forms.Button ServerHostBtn;
+        private System.Windows.Forms.Button SingleReadyBtn;
     }
 }

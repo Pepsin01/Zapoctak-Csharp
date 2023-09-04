@@ -17,7 +17,7 @@ namespace Ships_JosefLukasek
         GameHost, // State for host during the game
         MultiGameOver, // Multi-player game over
         SinglePlacing, 
-        SigleGame,
+        SingleGame,
         SingleGameOver
     }
     partial class ShipsForm
@@ -26,6 +26,8 @@ namespace Ships_JosefLukasek
         {
             public GamePlan? localPlan { get; private set; } // game plan of local player
             public GamePlan? remotePlan { get; private set; } // game plan of remote player
+            public GamePlan? AIPlan { get; private set; } // game plan of AI player
+            AIPlayer? AIPlayer;
             ShipsForm f;
             public GameState state { get; private set; }
 
@@ -38,6 +40,7 @@ namespace Ships_JosefLukasek
                 f = form;
                 ChangeStateTo(GameState.MainMenu);
             }
+            
             /// <summary>
             /// Creates new game plan for multi-player game.
             /// </summary>
@@ -47,6 +50,16 @@ namespace Ships_JosefLukasek
                 remotePlan = new GamePlan(f, (f.ClientRectangle.Width / 2) + 5, (f.ClientRectangle.Height / 2) - (5 * 40), AfterRemoteShot);
                 remotePlan?.Lock();
             }
+
+            void CreateSingeGamePlan()
+            {
+                localPlan = new GamePlan(f, (f.ClientRectangle.Width / 2) - (10 * 40) - 5, (f.ClientRectangle.Height / 2) - (5 * 40), null);
+                AIPlan = new GamePlan(f, (f.ClientRectangle.Width / 2) + 5, (f.ClientRectangle.Height / 2) - (5 * 40), AfterPlayerShot);
+                AIPlayer = new AIPlayer();
+                AIPlan.LoadPlanFromString(AIPlayer.GetPlan());
+                AIPlan.Lock();
+            }
+
             /// <summary>
             /// Decides what to do after shot to "remote" plan.
             /// If it was hit, it unlocks remote plan and checks if it was last ship and sends message to remote player.
@@ -79,6 +92,49 @@ namespace Ships_JosefLukasek
                     f.StatusLabel.Text = "Enemy turn";
                 }
             }
+
+            /// <summary>
+            /// Decides what to do after shot to "local" and "AI" plan.
+            /// </summary>
+            /// <param name="wasHit"> If the shot is hit. </param>
+            /// <param name="coords"> Coordinates of the shot. </param>
+            void AfterPlayerShot(bool wasHit, (int i, int j) coords)
+            {
+                if (wasHit)
+                {
+                    if (AIPlan?.hitCounter == 20)
+                    {
+                        AIPlan.Lock();
+                        f.StatusLabel.Text = "You won";
+                        localPlan?.Dispose();
+                        AIPlan?.Dispose();
+                        ChangeStateTo(GameState.SingleGameOver);
+                    }
+                    else
+                    {
+                        AIPlan?.Unlock();
+                    }
+                }
+                else
+                {
+                    AIPlan?.Lock();
+                    f.StatusLabel.Text = "Enemy turn";
+                    do
+                    {
+                        if(localPlan?.hitCounter == 20)
+                        {
+                            f.StatusLabel.Text = "You lost";
+                            localPlan?.Dispose();
+                            AIPlan?.Dispose();
+                            ChangeStateTo(GameState.SingleGameOver);
+                        }
+                        wasHit = localPlan?.MarkSquareAsHit(AIPlayer.GetShot()) ?? false;
+                    } while (wasHit);
+                    AIPlan?.Unlock();
+                    f.StatusLabel.Text = "Your turn";
+                }
+            }
+
             /// <summary>
             /// Main entry point for handling state changes and showing/hiding controls and managing game plans.
             /// </summary>
@@ -115,10 +171,12 @@ namespace Ships_JosefLukasek
                         break;
                     case GameState.GameClient:
                         state = GameState.GameClient;
+                        remotePlan?.Lock();
                         ShowGameClient();
                         break;
                     case GameState.GameHost:
                         state = GameState.GameHost;
+                        localPlan?.Unlock();
                         ShowGameHost();
                         break;
                     case GameState.MultiGameOver:
@@ -129,12 +187,19 @@ namespace Ships_JosefLukasek
                         break;
                     case GameState.SinglePlacing:
                         state = GameState.SinglePlacing;
+                        CreateSingeGamePlan();
+                        ShowSinglePlacing();
                         break;
-                    case GameState.SigleGame:
-                        state = GameState.SigleGame;
+                    case GameState.SingleGame:
+                        state = GameState.SingleGame;
+                        AIPlan?.Unlock();
+                        ShowSingleGame();
                         break;
                     case GameState.SingleGameOver:
                         state = GameState.SingleGameOver;
+                        localPlan = null;
+                        AIPlan = null;
+                        ShowSingleGameOver();
                         break;
                     default:
                         break;
@@ -157,7 +222,8 @@ namespace Ships_JosefLukasek
                 f.ClientPortBox.Visible = false;
                 f.ClientPortLabel.Visible = false;
                 f.HostModeBtn.Visible = false;
-                f.ReadyBtn.Visible = false;
+                f.MultiReadyBtn.Visible = false;
+                f.SingleReadyBtn.Visible = false;
                 f.ReplayBtn.Visible = false;
                 f.MenuBtn.Visible = false;
                 f.StatusLabel.Visible = false;
@@ -202,7 +268,7 @@ namespace Ships_JosefLukasek
                 f.BrigBtn.Visible = true;
                 f.FrigBtn.Visible = true;
                 f.GallBtn.Visible = true;
-                f.ReadyBtn.Visible = true;
+                f.MultiReadyBtn.Visible = true;
                 f.StatusLabel.Visible = true;
                 f.StatusLabel.Text = "Place all your ships";
             }
@@ -215,14 +281,12 @@ namespace Ships_JosefLukasek
             void ShowGameClient()
             {
                 f.StatusLabel.Visible = true;
-                remotePlan?.Lock();
                 f.StatusLabel.Text = "Enemy turn";
             }
 
             void ShowGameHost()
             {
                 f.StatusLabel.Visible = true;
-                remotePlan?.Unlock();
                 f.StatusLabel.Text = "Your turn";
             }
 
@@ -230,6 +294,26 @@ namespace Ships_JosefLukasek
             {
                 f.StatusLabel.Visible = true;
                 f.ReplayBtn.Visible = true;
+                f.MenuBtn.Visible = true;
+            }
+            void ShowSinglePlacing()
+            {
+                f.SloopBtn.Visible = true;
+                f.BrigBtn.Visible = true;
+                f.FrigBtn.Visible = true;
+                f.GallBtn.Visible = true;
+                f.SingleReadyBtn.Visible = true;
+                f.StatusLabel.Visible = true;
+                f.StatusLabel.Text = "Place all your ships";
+            }
+            void ShowSingleGame()
+            {
+                f.StatusLabel.Visible = true;
+                f.StatusLabel.Text = "Your turn";
+            }
+            void ShowSingleGameOver()
+            {
+                f.StatusLabel.Visible = true;
                 f.MenuBtn.Visible = true;
             }
         }

@@ -337,16 +337,16 @@ namespace Ships_JosefLukasek
         /// Marks the square as hit.
         /// </summary>
         /// <param name="pos"> The position of the square.</param>
-        /// <returns> True if the square exists, false otherwise.</returns>
+        /// <returns> True if the square was hit, false otherwise.</returns>
         public bool MarkSquareAsHit((int i, int j) pos)
         {
-            if (IsExistingSquare(pos.i, pos.j))
+            if (!IsExistingSquare(pos.i, pos.j))
             {
-                grid[pos.i, pos.j].State = SquareState.Hit;
-                RefreshInGameGraphics();
-                return true;
+                return false;
             }
-            return false;
+            bool wasHit = ShootOnSquare(pos);
+            RefreshInGameGraphics();
+            return wasHit;
         }
 
         /// <summary>
