@@ -178,12 +178,14 @@ namespace Ships_JosefLukasek
             void ShowGameClient()
             {
                 f.StatusLabel.Visible = true;
+                remotePlan.Lock();
                 f.StatusLabel.Text = "Enemy turn";
             }
 
             void ShowGameHost()
             {
                 f.StatusLabel.Visible = true;
+                remotePlan.Unlock();
                 f.StatusLabel.Text = "Your turn";
             }
 
