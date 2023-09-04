@@ -736,7 +736,7 @@ namespace Ships_JosefLukasek
         /// </summary>
         public void Resize(bool local)
         {
-            int newLeft = (form.ClientRectangle.Width / 2) - (local ? ((10* squareSize)-2) : -2);
+            int newLeft = (form.ClientRectangle.Width / 2) + (local ? - ((10* squareSize) - 2) : 2);
             int newTop = (form.ClientRectangle.Height / 2) - (5 * squareSize);
             int diffLeft = newLeft - defaultLeft;
             int diffTop = newTop - defaultTop;
