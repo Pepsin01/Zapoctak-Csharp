@@ -9,10 +9,19 @@ using System.Drawing;
 namespace Ships_JosefLukasek
 {
     // Enumeration to represent the state of a square on the grid.
-    enum SquareState { Free, Occupied, Hit }
+    enum SquareState { 
+        Free,
+        Occupied,
+        Hit // The square has been hit by a shot.
+    }
 
     // Enumeration to represent the state of the game plan.
-    enum PlanState { Locked, Placing, Standby, Hidden }
+    enum PlanState { 
+        Locked, // The plan is locked and cannot be modified.
+        Placing, // The player is placing ships on the plan.
+        Standby, // The player hovers over the plan and is ready to place a ship.
+        Hidden // The square content is hidden but the player can click on it.
+    }
 
     // Represents a ship on the game plan grid.
     internal class Ship
@@ -340,6 +349,10 @@ namespace Ships_JosefLukasek
             return false;
         }
 
+        /// <summary>
+        /// Tries to lock the game plan with the condition that all ships are placed.
+        /// </summary>
+        /// <returns> True if all ships are placed, false otherwise.</returns>
         public bool TryReadyLock()
         {
             foreach (int ship in ships)
@@ -355,12 +368,18 @@ namespace Ships_JosefLukasek
             return true;
         }
 
+        /// <summary>
+        /// Locks the game plan and refreshes the graphics.
+        /// </summary>
         public void Lock()
         {
             state = PlanState.Locked;
             RefreshInGameGraphics();
         }
 
+        /// <summary>
+        /// Unlocks the game plan so that player can click on squares and refreshes the graphics.
+        /// </summary>
         public void Unlock()
         {
             state = PlanState.Hidden;
@@ -770,6 +789,9 @@ namespace Ships_JosefLukasek
             }
         }
 
+        /// <summary>
+        /// Disposes of the game plan grid.
+        /// </summary>
         public void Dispose()
         {
             foreach (Square s in grid)

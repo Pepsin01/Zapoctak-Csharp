@@ -7,10 +7,19 @@ using System.Threading.Tasks;
 namespace Ships_JosefLukasek
 {
     enum GameState {
-        MainMenu, MultiMenu, SetHost, SetClient, 
-        Connecting, Placing,
-        GameClient, GameHost, MultiGameOver, 
-        SinglePlacing, SigleGame, SingleGameOver }
+        MainMenu, // Default state of the game
+        MultiMenu, // Multi-player menu
+        SetHost, // Menu for setting up hosts IP address and port
+        SetClient, // Menu for setting up clients IP address and port
+        Connecting, // Not interactive state, just waiting for connection
+        Placing, // Placing ships
+        GameClient, // State for client during the game
+        GameHost, // State for host during the game
+        MultiGameOver, // Multi-player game over
+        SinglePlacing, 
+        SigleGame,
+        SingleGameOver
+    }
     partial class ShipsForm
     {
         internal class StateController
@@ -24,16 +33,22 @@ namespace Ships_JosefLukasek
                 f = form;
                 ChangeStateTo(GameState.MainMenu);
             }
+            /// <summary>
+            /// Creates new game plan for multi-player game.
+            /// </summary>
             void CreateMultiGamePlan()
             {
-                localPlan = new GamePlan(f, (f.ClientRectangle.Width / 2) - (10 * 40) - 5, (f.ClientRectangle.Height / 2) - (5 * 40), AfterLocalShot);
+                localPlan = new GamePlan(f, (f.ClientRectangle.Width / 2) - (10 * 40) - 5, (f.ClientRectangle.Height / 2) - (5 * 40), null);
                 remotePlan = new GamePlan(f, (f.ClientRectangle.Width / 2) + 5, (f.ClientRectangle.Height / 2) - (5 * 40), AfterRemoteShot);
                 remotePlan?.Lock();
             }
-            void AfterLocalShot(bool wasHit, (int i, int j) coords)
-            {
-
-            }
+            /// <summary>
+            /// Decides what to do after shot to "remote" plan.
+            /// If it was hit, it unlocks remote plan and checks if it was last ship and sends message to remote player.
+            /// If it was not hit, it locks remote plan and sends message to remote player.
+            /// </summary>
+            /// <param name="wasHit"> If the shot was hit. </param>
+            /// <param name="coords"> Coordinates of the shot. </param>
             void AfterRemoteShot(bool wasHit, (int i, int j) coords)
             {
                 f.networkHandler.Send($"[SHO] {coords.i},{coords.j} <EOF>");

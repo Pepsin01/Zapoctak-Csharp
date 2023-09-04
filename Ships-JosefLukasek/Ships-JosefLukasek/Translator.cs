@@ -14,10 +14,18 @@ namespace Ships_JosefLukasek
         internal class Translator
         {
             ShipsForm f;
+            /// <summary>
+            /// Translates messages from network to actions in game
+            /// </summary>
+            /// <param name="form"> The form. </param>
             public Translator(ShipsForm form)
             {
                 f = form;
             }
+            /// <summary>
+            /// Translates message from network to actions in game
+            /// </summary>
+            /// <param name="message"> The message. </param>
             public void TranslateMessage(string message)
             {
                 List<string> messages = message.Split("<EOF>").ToList();
@@ -54,6 +62,10 @@ namespace Ships_JosefLukasek
                     }
                 }
             }
+            /// <summary>
+            /// Handles messages about status of the game
+            /// </summary>
+            /// <param name="message"></param>
             private void StatusHandler(string message)
             {
                 if(message == "CONNECTED")
@@ -84,12 +96,18 @@ namespace Ships_JosefLukasek
                     f.stateControler.remotePlan?.Dispose();
                     f.stateControler.ChangeStateTo(GameState.MultiGameOver);
                 }
+                // if message is not recognized, it is displayed in status label
                 else
                 {
                     f.StatusLabel.Text = message;
                 }
 
             }
+
+            /// <summary>
+            /// Handles error messages
+            /// </summary>
+            /// <param name="message"> The message. </param>
             private void ErrHandler(string message)
             {
                 if(message == "CONNECTION_FAILED")
@@ -104,15 +122,25 @@ namespace Ships_JosefLukasek
                     f.stateControler.localPlan?.Dispose();
                     f.stateControler.ChangeStateTo(GameState.MainMenu);
                 }
+                // if message is not recognized, it is displayed in status label
                 else
                 {
                     f.StatusLabel.Text = message;
                 }
             }
+            /// <summary>
+            /// Handles messages about game plan
+            /// </summary>
+            /// <param name="message"> The message. </param>
             private void PlanHandler(string message)
             {
                 f.stateControler.remotePlan?.LoadPlanFromString(message);
             }
+
+            /// <summary>
+            /// Handles messages about shooting
+            /// </summary>
+            /// <param name="message"> The message. </param>
             private void ShootHandler(string message)
             {
                 var coords = (int.Parse(message.Split(',')[0]), int.Parse(message.Split(',')[1]));
@@ -120,6 +148,10 @@ namespace Ships_JosefLukasek
             }
         }
 
+        /// <summary>
+        /// Receives message from network and passes it to translator in GUI thread
+        /// </summary>
+        /// <param name="message"> The message. </param>
         public void ReceiveMessage(string message)
         {
             Invoke(new Action(() =>

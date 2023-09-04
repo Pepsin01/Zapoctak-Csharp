@@ -53,7 +53,7 @@
             // fullscreenBtn
             // 
             fullscreenBtn.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            fullscreenBtn.Location = new System.Drawing.Point(1025, 12);
+            fullscreenBtn.Location = new System.Drawing.Point(965, 12);
             fullscreenBtn.Name = "fullscreenBtn";
             fullscreenBtn.Size = new System.Drawing.Size(107, 23);
             fullscreenBtn.TabIndex = 0;
@@ -64,7 +64,7 @@
             // SingleBtn
             // 
             SingleBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            SingleBtn.Location = new System.Drawing.Point(479, 287);
+            SingleBtn.Location = new System.Drawing.Point(449, 287);
             SingleBtn.Name = "SingleBtn";
             SingleBtn.Size = new System.Drawing.Size(153, 47);
             SingleBtn.TabIndex = 1;
@@ -74,7 +74,7 @@
             // MultiBtn
             // 
             MultiBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            MultiBtn.Location = new System.Drawing.Point(479, 340);
+            MultiBtn.Location = new System.Drawing.Point(449, 340);
             MultiBtn.Name = "MultiBtn";
             MultiBtn.Size = new System.Drawing.Size(153, 43);
             MultiBtn.TabIndex = 2;
@@ -85,7 +85,7 @@
             // HostModeBtn
             // 
             HostModeBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            HostModeBtn.Location = new System.Drawing.Point(479, 287);
+            HostModeBtn.Location = new System.Drawing.Point(449, 287);
             HostModeBtn.Name = "HostModeBtn";
             HostModeBtn.Size = new System.Drawing.Size(153, 47);
             HostModeBtn.TabIndex = 3;
@@ -97,7 +97,7 @@
             // JoinModeBtn
             // 
             JoinModeBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            JoinModeBtn.Location = new System.Drawing.Point(479, 340);
+            JoinModeBtn.Location = new System.Drawing.Point(449, 340);
             JoinModeBtn.Name = "JoinModeBtn";
             JoinModeBtn.Size = new System.Drawing.Size(153, 43);
             JoinModeBtn.TabIndex = 4;
@@ -193,7 +193,7 @@
             // ReadyBtn
             // 
             ReadyBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
-            ReadyBtn.Location = new System.Drawing.Point(12, 715);
+            ReadyBtn.Location = new System.Drawing.Point(12, 683);
             ReadyBtn.Name = "ReadyBtn";
             ReadyBtn.Size = new System.Drawing.Size(312, 66);
             ReadyBtn.TabIndex = 17;
@@ -204,7 +204,7 @@
             // ReplayBtn
             // 
             ReplayBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            ReplayBtn.Location = new System.Drawing.Point(479, 340);
+            ReplayBtn.Location = new System.Drawing.Point(449, 340);
             ReplayBtn.Name = "ReplayBtn";
             ReplayBtn.Size = new System.Drawing.Size(153, 46);
             ReplayBtn.TabIndex = 18;
@@ -215,7 +215,7 @@
             // MenuBtn
             // 
             MenuBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            MenuBtn.Location = new System.Drawing.Point(479, 287);
+            MenuBtn.Location = new System.Drawing.Point(449, 287);
             MenuBtn.Name = "MenuBtn";
             MenuBtn.Size = new System.Drawing.Size(153, 47);
             MenuBtn.TabIndex = 19;
@@ -228,7 +228,7 @@
             StatusLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             StatusLabel.AutoSize = true;
             StatusLabel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            StatusLabel.Location = new System.Drawing.Point(479, 752);
+            StatusLabel.Location = new System.Drawing.Point(449, 720);
             StatusLabel.Name = "StatusLabel";
             StatusLabel.Size = new System.Drawing.Size(134, 32);
             StatusLabel.TabIndex = 20;
@@ -248,7 +248,7 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1144, 793);
+            ClientSize = new System.Drawing.Size(1084, 761);
             Controls.Add(ServerHostBtn);
             Controls.Add(StatusLabel);
             Controls.Add(MenuBtn);
