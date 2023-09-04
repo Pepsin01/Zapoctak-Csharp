@@ -713,7 +713,7 @@ namespace Ships_JosefLukasek
                 }
             }
 
-            state = PlanState.Standby;
+            state = PlanState.Locked;
             RefreshInGameGraphics();
             IsReady = true;
 
