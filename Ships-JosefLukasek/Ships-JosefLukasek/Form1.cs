@@ -130,7 +130,7 @@ namespace Ships_JosefLukasek
             {
                 StatusLabel.Text = "You must place all ships";
             }
-            if (stateControler.remotePlan.IsReady)
+            if (stateControler.remotePlan.IsReady && stateControler.localPlan.IsReady)
             {
                 if (isHost)
                 {
