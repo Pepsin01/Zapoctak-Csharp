@@ -94,10 +94,14 @@ namespace Ships_JosefLukasek
             {
                 if(message == "CONNECTION_FAILED")
                 {
+                    f.stateControler.remotePlan?.Dispose();
+                    f.stateControler.localPlan?.Dispose();
                     f.stateControler.ChangeStateTo(GameState.MainMenu);
                 }
                 else if(message == "CONNECTION_LOST")
                 {
+                    f.stateControler.remotePlan?.Dispose();
+                    f.stateControler.localPlan?.Dispose();
                     f.stateControler.ChangeStateTo(GameState.MainMenu);
                 }
                 else

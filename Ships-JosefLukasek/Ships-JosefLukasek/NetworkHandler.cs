@@ -145,7 +145,10 @@ namespace Ships_JosefLukasek
                 // Receive the response from the remote device.
                 try
                 {
-                    bytesRec = handler?.Receive(bytes) ?? 0;
+                    lock (handler)
+                    {
+                        bytesRec = handler?.Receive(bytes) ?? 0;
+                    }
                 }
                 catch (SocketException)
                 {
@@ -174,7 +177,10 @@ namespace Ships_JosefLukasek
             byte[] msg = Encoding.ASCII.GetBytes(message);
             try
             {
-                handler?.Send(msg);
+                lock (handler)
+                {
+                    handler?.Send(msg);
+                }
             }
             catch (SocketException)
             {
@@ -191,8 +197,12 @@ namespace Ships_JosefLukasek
         public void Close()
         {
             running = false;
-            handler?.Shutdown(SocketShutdown.Both);
-            handler?.Close();
+            lock (handler)
+            {
+                handler?.Shutdown(SocketShutdown.Both);
+                handler?.Close();
+                handler = null;
+            }
         }
     }
 }
