@@ -36,6 +36,7 @@ namespace Ships_JosefLukasek
             }
             void AfterRemoteShot(bool wasHit, (int i, int j) coords)
             {
+                f.networkHandler.Send($"[SHO] {coords.i},{coords.j} <EOF>");
                 if (wasHit)
                 {
                     remotePlan.Unlock();
@@ -43,6 +44,9 @@ namespace Ships_JosefLukasek
                 else
                 {
                     remotePlan.Lock();
+                    f.networkHandler.Send("[STS] Your turn <EOF>");
+                    f.networkHandler.Send("[STS] END_TURN <EOF>");
+                    f.StatusLabel.Text = "Enemy turn";
                 }
             }
             public void ChangeStateTo(GameState newState)
@@ -126,12 +130,14 @@ namespace Ships_JosefLukasek
             {
                 f.SingleBtn.Visible = true;
                 f.MultiBtn.Visible = true;
+                f.StatusLabel.Visible = false;
             }
 
             void ShowMultiMenu()
             {
                 f.HostModeBtn.Visible = true;
                 f.JoinModeBtn.Visible = true;
+                f.StatusLabel.Visible = false;
             }
 
             void ShowSetHost()
@@ -172,11 +178,13 @@ namespace Ships_JosefLukasek
             void ShowGameClient()
             {
                 f.StatusLabel.Visible = true;
+                f.StatusLabel.Text = "Enemy turn";
             }
 
             void ShowGameHost()
             {
                 f.StatusLabel.Visible = true;
+                f.StatusLabel.Text = "Your turn";
             }
 
             void ShowMultiGameOver()

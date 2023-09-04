@@ -300,7 +300,6 @@ namespace Ships_JosefLukasek
         /// <param name="e">The event arguments.</param>
         public void OnPlanHover(object? sender, EventArgs? e)
         {
-
             Button btn = (Button) (sender ?? lastlyHoveredOn);
 
             switch (state)
@@ -310,7 +309,6 @@ namespace Ships_JosefLukasek
                 case PlanState.Placing:
                     RefreshPlacingGraphics();
                     PlaceCurrShip(BtnToCoordinates(btn), false);
-                    RefreshPlacingGraphics();
                     break;
                 case PlanState.Standby:
                     RefreshPlacingGraphics();
