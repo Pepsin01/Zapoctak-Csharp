@@ -735,9 +735,9 @@ namespace Ships_JosefLukasek
         /// <summary>
         /// Resizes the game plan grid based on the size of the form's client area.
         /// </summary>
-        public void Resize()
+        public void Resize(bool local)
         {
-            int newLeft = (form.ClientRectangle.Width / 2) - (10 * squareSize);
+            int newLeft = (form.ClientRectangle.Width / 2) - ((10 * squareSize) + 2) * (local ? 1 : -1);
             int newTop = (form.ClientRectangle.Height / 2) - (5 * squareSize);
             int diffLeft = newLeft - defaultLeft;
             int diffTop = newTop - defaultTop;

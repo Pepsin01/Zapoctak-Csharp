@@ -54,11 +54,11 @@ namespace Ships_JosefLukasek
             {
                 if (stateControler.localPlan is not null)
                 {
-                    stateControler.localPlan.Resize();
+                    stateControler.localPlan.Resize(true);
                 }
                 if (stateControler.remotePlan is not null)
                 {
-                    stateControler.remotePlan.Resize();
+                    stateControler.remotePlan.Resize(false);
                 }
             }
         }
