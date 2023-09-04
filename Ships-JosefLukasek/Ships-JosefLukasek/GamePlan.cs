@@ -670,7 +670,6 @@ namespace Ships_JosefLukasek
                     else
                         result.Append('W');
                 }
-                result.Append("\n");
             }
             return result.Remove(result.Length - 1, 1).ToString();
         }
