@@ -142,5 +142,19 @@ namespace Ships_JosefLukasek
                 }
             }
         }
+
+        private void MenuBtn_Click(object sender, EventArgs e)
+        {
+            networkHandler?.Close();
+            networkHandler = null;
+            stateControler.ChangeStateTo(GameState.MainMenu);
+        }
+
+        private void ReplayBtn_Click(object sender, EventArgs e)
+        {
+            networkHandler?.Close();
+            networkHandler = null;
+            stateControler.ChangeStateTo(GameState.MultiMenu);
+        }
     }
 }

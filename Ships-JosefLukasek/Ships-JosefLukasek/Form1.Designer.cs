@@ -65,6 +65,7 @@
             // 
             // SingleBtn
             // 
+            SingleBtn.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             SingleBtn.Location = new System.Drawing.Point(479, 58);
             SingleBtn.Name = "SingleBtn";
             SingleBtn.Size = new System.Drawing.Size(153, 47);
@@ -74,6 +75,7 @@
             // 
             // MultiBtn
             // 
+            MultiBtn.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             MultiBtn.Location = new System.Drawing.Point(479, 111);
             MultiBtn.Name = "MultiBtn";
             MultiBtn.Size = new System.Drawing.Size(153, 43);
@@ -84,6 +86,7 @@
             // 
             // HostModeBtn
             // 
+            HostModeBtn.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             HostModeBtn.Location = new System.Drawing.Point(320, 58);
             HostModeBtn.Name = "HostModeBtn";
             HostModeBtn.Size = new System.Drawing.Size(153, 47);
@@ -95,6 +98,7 @@
             // 
             // JoinModeBtn
             // 
+            JoinModeBtn.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             JoinModeBtn.Location = new System.Drawing.Point(320, 111);
             JoinModeBtn.Name = "JoinModeBtn";
             JoinModeBtn.Size = new System.Drawing.Size(153, 43);
@@ -214,7 +218,8 @@
             // 
             // ReadyBtn
             // 
-            ReadyBtn.Location = new System.Drawing.Point(320, 657);
+            ReadyBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            ReadyBtn.Location = new System.Drawing.Point(12, 715);
             ReadyBtn.Name = "ReadyBtn";
             ReadyBtn.Size = new System.Drawing.Size(312, 66);
             ReadyBtn.TabIndex = 17;
@@ -224,28 +229,34 @@
             // 
             // ReplayBtn
             // 
-            ReplayBtn.Location = new System.Drawing.Point(741, 375);
+            ReplayBtn.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            ReplayBtn.Location = new System.Drawing.Point(638, 111);
             ReplayBtn.Name = "ReplayBtn";
-            ReplayBtn.Size = new System.Drawing.Size(75, 23);
+            ReplayBtn.Size = new System.Drawing.Size(153, 43);
             ReplayBtn.TabIndex = 18;
-            ReplayBtn.Text = "button1";
+            ReplayBtn.Text = "Play again";
             ReplayBtn.UseVisualStyleBackColor = true;
+            ReplayBtn.Click += ReplayBtn_Click;
             // 
             // MenuBtn
             // 
-            MenuBtn.Location = new System.Drawing.Point(741, 404);
+            MenuBtn.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            MenuBtn.Location = new System.Drawing.Point(638, 60);
             MenuBtn.Name = "MenuBtn";
-            MenuBtn.Size = new System.Drawing.Size(75, 23);
+            MenuBtn.Size = new System.Drawing.Size(153, 43);
             MenuBtn.TabIndex = 19;
-            MenuBtn.Text = "button1";
+            MenuBtn.Text = "Main menu";
             MenuBtn.UseVisualStyleBackColor = true;
+            MenuBtn.Click += MenuBtn_Click;
             // 
             // StatusLabel
             // 
+            StatusLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             StatusLabel.AutoSize = true;
-            StatusLabel.Location = new System.Drawing.Point(494, 773);
+            StatusLabel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            StatusLabel.Location = new System.Drawing.Point(479, 752);
             StatusLabel.Name = "StatusLabel";
-            StatusLabel.Size = new System.Drawing.Size(67, 15);
+            StatusLabel.Size = new System.Drawing.Size(134, 32);
             StatusLabel.TabIndex = 20;
             StatusLabel.Text = "StatusLabel";
             // 
@@ -253,7 +264,7 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1144, 797);
+            ClientSize = new System.Drawing.Size(1144, 793);
             Controls.Add(StatusLabel);
             Controls.Add(MenuBtn);
             Controls.Add(ReplayBtn);
