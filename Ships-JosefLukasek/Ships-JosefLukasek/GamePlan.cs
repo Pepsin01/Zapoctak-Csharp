@@ -105,6 +105,7 @@ namespace Ships_JosefLukasek
                         state = SquareState.Occupied;
                         break;
                     case SquareState.Hit:
+                        state = SquareState.Hit;
                         break;
                     default:
                         break;
