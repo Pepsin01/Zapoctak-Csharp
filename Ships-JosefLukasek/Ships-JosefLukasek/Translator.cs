@@ -76,7 +76,11 @@ namespace Ships_JosefLukasek
                 }
                 else if (message == "END_TURN")
                 {
-                    f.stateControler.remotePlan.Unlock();
+                    f.stateControler.remotePlan?.Unlock();
+                }
+                else if (message == "END_GAME")
+                {
+                    f.stateControler.ChangeStateTo(GameState.MultiGameOver);
                 }
                 else
                 {
@@ -101,12 +105,12 @@ namespace Ships_JosefLukasek
             }
             private void PlanHandler(string message)
             {
-                f.stateControler.remotePlan.LoadPlanFromString(message);
+                f.stateControler.remotePlan?.LoadPlanFromString(message);
             }
             private void ShootHandler(string message)
             {
                 var coords = (int.Parse(message.Split(',')[0]), int.Parse(message.Split(',')[1]));
-                f.stateControler.remotePlan.MarkSquareAsHit(coords);
+                f.stateControler.localPlan?.MarkSquareAsHit(coords);
             }
         }
 

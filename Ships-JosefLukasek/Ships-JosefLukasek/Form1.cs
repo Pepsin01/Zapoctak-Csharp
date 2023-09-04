@@ -12,7 +12,7 @@ namespace Ships_JosefLukasek
 {
     public partial class ShipsForm : Form
     {
-        StateControler stateControler;
+        StateController stateControler;
         NetworkHandler networkHandler;
         Translator translator;
         bool isHost = false;
@@ -24,7 +24,7 @@ namespace Ships_JosefLukasek
             JoinModeBtn.Visible = false;
             MultiBtn.Visible = false;
             SingleBtn.Visible = false;
-            stateControler = new StateControler(this);
+            stateControler = new StateController(this);
             translator = new Translator(this);
         }
 

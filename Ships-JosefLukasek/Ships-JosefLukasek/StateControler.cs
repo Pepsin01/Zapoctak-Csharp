@@ -13,13 +13,13 @@ namespace Ships_JosefLukasek
         SinglePlacing, SigleGame, SingleGameOver }
     partial class ShipsForm
     {
-        internal class StateControler
+        internal class StateController
         {
-            public GamePlan localPlan { get; private set; }
-            public GamePlan remotePlan { get; private set; }
+            public GamePlan? localPlan { get; private set; }
+            public GamePlan? remotePlan { get; private set; }
             ShipsForm f;
             public GameState state { get; private set; }
-            public StateControler(ShipsForm form)
+            public StateController(ShipsForm form)
             {
                 f = form;
                 ChangeStateTo(GameState.MainMenu);
@@ -28,7 +28,7 @@ namespace Ships_JosefLukasek
             {
                 localPlan = new GamePlan(f, (f.ClientRectangle.Width / 2) - (10 * 40) - 5, (f.ClientRectangle.Height / 2) - (5 * 40), AfterLocalShot);
                 remotePlan = new GamePlan(f, (f.ClientRectangle.Width / 2) + 5, (f.ClientRectangle.Height / 2) - (5 * 40), AfterRemoteShot);
-                remotePlan.Lock();
+                remotePlan?.Lock();
             }
             void AfterLocalShot(bool wasHit, (int i, int j) coords)
             {
@@ -39,11 +39,23 @@ namespace Ships_JosefLukasek
                 f.networkHandler.Send($"[SHO] {coords.i},{coords.j} <EOF>");
                 if (wasHit)
                 {
-                    remotePlan.Unlock();
+                    remotePlan?.Unlock();
+                    if(remotePlan?.hitCounter == 20)
+                    {
+                        remotePlan.Lock();
+                        f.StatusLabel.Text = "You won";
+                        f.networkHandler.Send("[STS] You lost <EOF>");
+                        f.networkHandler.Send("[STS] END_GAME <EOF>");
+                        localPlan?.Dispose();
+                        remotePlan?.Dispose();
+                        localPlan = null;
+                        remotePlan = null;
+                        ChangeStateTo(GameState.MultiGameOver);
+                    }
                 }
                 else
                 {
-                    remotePlan.Lock();
+                    remotePlan?.Lock();
                     f.networkHandler.Send("[STS] Your turn <EOF>");
                     f.networkHandler.Send("[STS] END_TURN <EOF>");
                     f.StatusLabel.Text = "Enemy turn";
@@ -88,6 +100,7 @@ namespace Ships_JosefLukasek
                         break;
                     case GameState.MultiGameOver:
                         state = GameState.MultiGameOver;
+                        ShowMultiGameOver();
                         break;
                     case GameState.SinglePlacing:
                         state = GameState.SinglePlacing;
@@ -178,21 +191,20 @@ namespace Ships_JosefLukasek
             void ShowGameClient()
             {
                 f.StatusLabel.Visible = true;
-                remotePlan.Lock();
+                remotePlan?.Lock();
                 f.StatusLabel.Text = "Enemy turn";
             }
 
             void ShowGameHost()
             {
                 f.StatusLabel.Visible = true;
-                remotePlan.Unlock();
+                remotePlan?.Unlock();
                 f.StatusLabel.Text = "Your turn";
             }
 
             void ShowMultiGameOver()
             {
                 f.StatusLabel.Visible = true;
-                f.StatusLabel.Text = "Game Over";
                 f.ReplayBtn.Visible = true;
                 f.MenuBtn.Visible = true;
             }

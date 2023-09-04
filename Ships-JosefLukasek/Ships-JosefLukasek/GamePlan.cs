@@ -167,6 +167,8 @@ namespace Ships_JosefLukasek
         // Indicates whether the game plan is ready to be locked.
         public bool IsReady { get; private set; } = false;
 
+        public int hitCounter { get; private set; } = 0;
+
         /// <summary>
         /// Initializes a new game plan with the specified form, default left and top positions, and shoot callback action.
         /// </summary>
@@ -741,6 +743,7 @@ namespace Ships_JosefLukasek
         bool ShootOnSquare((int i, int j) pos)
         {
             grid[pos.i, pos.j].State = SquareState.Hit;
+            hitCounter++;
             if (grid[pos.i, pos.j].ship != null)
                 return true;
             return false;
@@ -761,6 +764,14 @@ namespace Ships_JosefLukasek
             {
                 s.button.Left += diffLeft;
                 s.button.Top += diffTop;
+            }
+        }
+
+        public void Dispose()
+        {
+            foreach (Square s in grid)
+            {
+                s.button.Dispose();
             }
         }
     }
