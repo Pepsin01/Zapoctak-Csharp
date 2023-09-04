@@ -129,12 +129,10 @@ namespace Ships_JosefLukasek
                 f.ClientIpLabel.Visible = false;
                 f.ClientIpBox.Visible = false;
                 f.ClientJoinBtn.Visible = false;
+                f.ServerHostBtn.Visible = false;
                 f.ClientPortBox.Visible = false;
                 f.ClientPortLabel.Visible = false;
-                f.HostJoinBtn.Visible = false;
                 f.HostModeBtn.Visible = false;
-                f.HostPortLabel.Visible = false;
-                f.HostPortBox.Visible = false;
                 f.ReadyBtn.Visible = false;
                 f.ReplayBtn.Visible = false;
                 f.MenuBtn.Visible = false;
@@ -156,9 +154,11 @@ namespace Ships_JosefLukasek
 
             void ShowSetHost()
             {
-                f.HostPortLabel.Visible = true;
-                f.HostPortBox.Visible = true;
-                f.HostJoinBtn.Visible = true;
+                f.ClientIpLabel.Visible = true;
+                f.ClientIpBox.Visible = true;
+                f.ClientPortLabel.Visible = true;
+                f.ClientPortBox.Visible = true;
+                f.ServerHostBtn.Visible = true;
                 f.StatusLabel.Visible = true;
             }
 

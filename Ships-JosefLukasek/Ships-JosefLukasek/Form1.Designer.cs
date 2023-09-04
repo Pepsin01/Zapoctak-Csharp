@@ -42,14 +42,12 @@
             ClientPortBox = new System.Windows.Forms.TextBox();
             ClientIpLabel = new System.Windows.Forms.Label();
             ClientPortLabel = new System.Windows.Forms.Label();
-            HostPortBox = new System.Windows.Forms.TextBox();
             ClientJoinBtn = new System.Windows.Forms.Button();
-            HostJoinBtn = new System.Windows.Forms.Button();
-            HostPortLabel = new System.Windows.Forms.Label();
             ReadyBtn = new System.Windows.Forms.Button();
             ReplayBtn = new System.Windows.Forms.Button();
             MenuBtn = new System.Windows.Forms.Button();
             StatusLabel = new System.Windows.Forms.Label();
+            ServerHostBtn = new System.Windows.Forms.Button();
             SuspendLayout();
             // 
             // fullscreenBtn
@@ -154,6 +152,7 @@
             ClientIpBox.Name = "ClientIpBox";
             ClientIpBox.Size = new System.Drawing.Size(100, 23);
             ClientIpBox.TabIndex = 9;
+            ClientIpBox.Text = "192.168.0.80";
             // 
             // ClientPortBox
             // 
@@ -161,6 +160,7 @@
             ClientPortBox.Name = "ClientPortBox";
             ClientPortBox.Size = new System.Drawing.Size(100, 23);
             ClientPortBox.TabIndex = 10;
+            ClientPortBox.Text = "6666";
             // 
             // ClientIpLabel
             // 
@@ -180,13 +180,6 @@
             ClientPortLabel.TabIndex = 12;
             ClientPortLabel.Text = "Port:";
             // 
-            // HostPortBox
-            // 
-            HostPortBox.Location = new System.Drawing.Point(177, 436);
-            HostPortBox.Name = "HostPortBox";
-            HostPortBox.Size = new System.Drawing.Size(100, 23);
-            HostPortBox.TabIndex = 13;
-            // 
             // ClientJoinBtn
             // 
             ClientJoinBtn.Location = new System.Drawing.Point(177, 369);
@@ -196,25 +189,6 @@
             ClientJoinBtn.Text = "Join";
             ClientJoinBtn.UseVisualStyleBackColor = true;
             ClientJoinBtn.Click += ClientJoinBtn_Click;
-            // 
-            // HostJoinBtn
-            // 
-            HostJoinBtn.Location = new System.Drawing.Point(177, 465);
-            HostJoinBtn.Name = "HostJoinBtn";
-            HostJoinBtn.Size = new System.Drawing.Size(100, 23);
-            HostJoinBtn.TabIndex = 15;
-            HostJoinBtn.Text = "Host";
-            HostJoinBtn.UseVisualStyleBackColor = true;
-            HostJoinBtn.Click += HostJoinBtn_Click;
-            // 
-            // HostPortLabel
-            // 
-            HostPortLabel.AutoSize = true;
-            HostPortLabel.Location = new System.Drawing.Point(133, 439);
-            HostPortLabel.Name = "HostPortLabel";
-            HostPortLabel.Size = new System.Drawing.Size(29, 15);
-            HostPortLabel.TabIndex = 16;
-            HostPortLabel.Text = "Port";
             // 
             // ReadyBtn
             // 
@@ -230,9 +204,9 @@
             // ReplayBtn
             // 
             ReplayBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            ReplayBtn.Location = new System.Drawing.Point(479, 343);
+            ReplayBtn.Location = new System.Drawing.Point(479, 340);
             ReplayBtn.Name = "ReplayBtn";
-            ReplayBtn.Size = new System.Drawing.Size(153, 43);
+            ReplayBtn.Size = new System.Drawing.Size(153, 46);
             ReplayBtn.TabIndex = 18;
             ReplayBtn.Text = "Play again";
             ReplayBtn.UseVisualStyleBackColor = true;
@@ -260,19 +234,27 @@
             StatusLabel.TabIndex = 20;
             StatusLabel.Text = "StatusLabel";
             // 
+            // ServerHostBtn
+            // 
+            ServerHostBtn.Location = new System.Drawing.Point(177, 369);
+            ServerHostBtn.Name = "ServerHostBtn";
+            ServerHostBtn.Size = new System.Drawing.Size(100, 23);
+            ServerHostBtn.TabIndex = 21;
+            ServerHostBtn.Text = "Host";
+            ServerHostBtn.UseVisualStyleBackColor = true;
+            ServerHostBtn.Click += ServerHostBtn_Click;
+            // 
             // ShipsForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1144, 793);
+            Controls.Add(ServerHostBtn);
             Controls.Add(StatusLabel);
             Controls.Add(MenuBtn);
             Controls.Add(ReplayBtn);
             Controls.Add(ReadyBtn);
-            Controls.Add(HostPortLabel);
-            Controls.Add(HostJoinBtn);
             Controls.Add(ClientJoinBtn);
-            Controls.Add(HostPortBox);
             Controls.Add(ClientPortLabel);
             Controls.Add(ClientIpLabel);
             Controls.Add(ClientPortBox);
@@ -311,13 +293,11 @@
         private System.Windows.Forms.TextBox ClientPortBox;
         private System.Windows.Forms.Label ClientIpLabel;
         private System.Windows.Forms.Label ClientPortLabel;
-        private System.Windows.Forms.TextBox HostPortBox;
         private System.Windows.Forms.Button ClientJoinBtn;
-        private System.Windows.Forms.Button HostJoinBtn;
-        private System.Windows.Forms.Label HostPortLabel;
         private System.Windows.Forms.Button ReadyBtn;
         private System.Windows.Forms.Button ReplayBtn;
         private System.Windows.Forms.Button MenuBtn;
         private System.Windows.Forms.Label StatusLabel;
+        private System.Windows.Forms.Button ServerHostBtn;
     }
 }

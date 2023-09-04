@@ -108,13 +108,15 @@ namespace Ships_JosefLukasek
 
         private void ClientJoinBtn_Click(object sender, EventArgs e)
         {
-            networkHandler = new NetworkHandler(ReceiveMessage, false, "192.168.0.80", 6666);
+            int port = int.Parse(ClientPortBox.Text);
+            networkHandler = new NetworkHandler(ReceiveMessage, false, ClientIpBox.Text, port);
         }
 
-        private void HostJoinBtn_Click(object sender, EventArgs e)
+        private void ServerHostBtn_Click(object sender, EventArgs e)
         {
+            int port = int.Parse(ClientPortBox.Text);
             stateControler.ChangeStateTo(GameState.Connecting);
-            networkHandler = new NetworkHandler(ReceiveMessage, true, "192.168.0.80", 6666);
+            networkHandler = new NetworkHandler(ReceiveMessage, true, ClientIpBox.Text, port);
             isHost = true;
         }
 
