@@ -28,7 +28,7 @@ namespace Ships_JosefLukasek
             {
                 localPlan = new GamePlan(f, (f.ClientRectangle.Width / 2) - (10 * 40) - 5, (f.ClientRectangle.Height / 2) - (5 * 40), AfterLocalShot);
                 remotePlan = new GamePlan(f, (f.ClientRectangle.Width / 2) + 5, (f.ClientRectangle.Height / 2) - (5 * 40), AfterRemoteShot);
-                remotePlan.state = PlanState.Locked;
+                remotePlan.Lock();
             }
             void AfterLocalShot(bool wasHit, (int i, int j) coords)
             {
@@ -38,11 +38,11 @@ namespace Ships_JosefLukasek
             {
                 if (wasHit)
                 {
-                    remotePlan.state = PlanState.Hidden;
+                    remotePlan.Unlock();
                 }
                 else
                 {
-                    remotePlan.state = PlanState.Locked;
+                    remotePlan.Lock();
                 }
             }
             public void ChangeStateTo(GameState newState)

@@ -152,7 +152,7 @@ namespace Ships_JosefLukasek
         int[] ships = new[] { 4, 3, 2, 1 };
 
         // Current state of the game plan.
-        public PlanState state { get; set; }
+        public PlanState state { get; private set; }
 
         // The ship currently being placed.
         Ship? currentShip;
@@ -347,7 +347,20 @@ namespace Ships_JosefLukasek
             }
             state = PlanState.Locked;
             IsReady = true;
+            RefreshInGameGraphics();
             return true;
+        }
+
+        public void Lock()
+        {
+            state = PlanState.Locked;
+            RefreshInGameGraphics();
+        }
+
+        public void Unlock()
+        {
+            state = PlanState.Hidden;
+            RefreshInGameGraphics();
         }
 
         /// <summary>
