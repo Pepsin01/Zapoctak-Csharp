@@ -26,8 +26,8 @@ namespace Ships_JosefLukasek
             }
             void CreateMultiGamePlan()
             {
-                localPlan = new GamePlan(f, (f.ClientRectangle.Width / 2) - (10 * 40), (f.ClientRectangle.Height / 2) - (10 * 40) - 2, AfterLocalShot);
-                remotePlan = new GamePlan(f, (f.ClientRectangle.Width / 2) - (10 * 40), (f.ClientRectangle.Height / 2) + (10 * 40) + 2, AfterRemoteShot);
+                localPlan = new GamePlan(f, (f.ClientRectangle.Width / 2) - (10 * 40) - 2, (f.ClientRectangle.Height / 2) - (10 * 40), AfterLocalShot);
+                remotePlan = new GamePlan(f, (f.ClientRectangle.Width / 2) + (10 * 40) + 2, (f.ClientRectangle.Height / 2) - (10 * 40), AfterRemoteShot);
                 remotePlan.state = PlanState.Locked;
             }
             void AfterLocalShot(bool wasHit, (int i, int j) coords)
