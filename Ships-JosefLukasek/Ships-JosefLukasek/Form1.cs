@@ -50,9 +50,16 @@ namespace Ships_JosefLukasek
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            if (stateControler.localPlan is not null)
+            if (stateControler is not null)
             {
-                stateControler.localPlan.Resize();
+                if (stateControler.localPlan is not null)
+                {
+                    stateControler.localPlan.Resize();
+                }
+                if (stateControler.remotePlan is not null)
+                {
+                    stateControler.remotePlan.Resize();
+                }
             }
         }
 
