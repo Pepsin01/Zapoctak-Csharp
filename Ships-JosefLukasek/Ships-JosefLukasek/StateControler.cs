@@ -24,10 +24,15 @@ namespace Ships_JosefLukasek
     {
         internal class StateController
         {
-            public GamePlan? localPlan { get; private set; }
-            public GamePlan? remotePlan { get; private set; }
+            public GamePlan? localPlan { get; private set; } // game plan of local player
+            public GamePlan? remotePlan { get; private set; } // game plan of remote player
             ShipsForm f;
             public GameState state { get; private set; }
+
+            /// <summary>
+            /// Holds state of the game and shows/hides controls and manages game plans.
+            /// </summary>
+            /// <param name="form"> The form. </param>
             public StateController(ShipsForm form)
             {
                 f = form;
@@ -74,6 +79,10 @@ namespace Ships_JosefLukasek
                     f.StatusLabel.Text = "Enemy turn";
                 }
             }
+            /// <summary>
+            /// Main entry point for handling state changes and showing/hiding controls and managing game plans.
+            /// </summary>
+            /// <param name="newState"> New state of the game. </param>
             public void ChangeStateTo(GameState newState)
             {
                 HideAll();

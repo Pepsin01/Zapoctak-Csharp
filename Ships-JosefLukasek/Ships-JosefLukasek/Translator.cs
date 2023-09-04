@@ -11,6 +11,7 @@ namespace Ships_JosefLukasek
 {
     partial class ShipsForm
     {
+        // This class is responsible for translating messages from network to actions in game
         internal class Translator
         {
             ShipsForm f;

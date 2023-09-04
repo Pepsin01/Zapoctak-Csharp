@@ -12,9 +12,16 @@ namespace Ships_JosefLukasek
 {
     public partial class ShipsForm : Form
     {
+        // This class is responsible for controlling the state of the game
         StateController stateControler;
+
+        // This class is responsible for handling network communication
         NetworkHandler networkHandler;
+
+        // This class is responsible for translating messages from network to actions in game
         Translator translator;
+
+        // is true if the player is host
         bool isHost = false;
 
         public ShipsForm()
