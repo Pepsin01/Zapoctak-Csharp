@@ -308,6 +308,7 @@ namespace Ships_JosefLukasek
                 case PlanState.Locked:
                     break;
                 case PlanState.Placing:
+                    RefreshPlacingGraphics();
                     PlaceCurrShip(BtnToCoordinates(btn), false);
                     RefreshPlacingGraphics();
                     break;
