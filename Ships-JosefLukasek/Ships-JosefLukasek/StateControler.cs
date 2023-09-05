@@ -22,6 +22,9 @@ namespace Ships_JosefLukasek
     }
     partial class ShipsForm
     {
+        /// <summary>
+        /// This class is responsible for controlling the state of the game.
+        /// </summary>
         internal class StateController
         {
             public GamePlan? localPlan { get; private set; } // game plan of local player

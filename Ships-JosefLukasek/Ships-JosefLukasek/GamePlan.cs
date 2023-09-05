@@ -8,34 +8,48 @@ using System.Drawing;
 
 namespace Ships_JosefLukasek
 {
-    // Enumeration to represent the state of a square on the grid.
-    enum SquareState { 
+    /// <summary>
+    /// Enumeration to represent the state of a square on the grid.
+    /// </summary>
+    public enum SquareState { 
         Free,
         Occupied,
         Hit // The square has been hit by a shot.
     }
 
-    // Enumeration to represent the state of the game plan.
-    enum PlanState { 
+    /// <summary>
+    /// Enumeration to represent the state of the game plan.
+    /// </summary>
+    public enum PlanState { 
         Locked, // The plan is locked and cannot be modified.
         Placing, // The player is placing ships on the plan.
         Standby, // The player hovers over the plan and is ready to place a ship.
         Hidden // The square content is hidden but the player can click on it.
     }
 
-    // Represents a ship on the game plan grid.
-    internal class Ship
+    /// <summary>
+    /// Represents a game plan grid.
+    /// </summary>
+    public class Ship
     {
-        // Enumeration to specify the direction of the ship.
+        /// <summary>
+        /// Enumeration to specify the direction of the ship.
+        /// </summary>
         public enum ShipDir { Down, Up, Left, Right }
 
-        // Current direction of the ship.
+        /// <summary>
+        /// Current direction of the ship.
+        /// </summary>
         public ShipDir dir { get; private set; }
 
-        // Length of the ship.
+        /// <summary>
+        /// Length of the ship.
+        /// </summary>
         public int Length { get; }
 
-        // Array to store the squares occupied by the ship.
+        /// <summary>
+        /// Array to store the squares occupied by the ship.
+        /// </summary>
         public Square[] occupiedSquares { get; private set; }
 
         /// <summary>
@@ -91,10 +105,17 @@ namespace Ships_JosefLukasek
         }
     }
 
-    // Represents a square on the game plan grid.
-    internal class Square
+    /// <summary>
+    /// Represents a square on the game plan grid.
+    /// </summary>
+    public class Square
     {
         SquareState state = SquareState.Free;
+
+        /// <summary>
+        /// The current state of the square.
+        /// Setting the state to Occupied increases the occupation counter and setting it to Free decreases it.
+        /// </summary>
         public SquareState State {
             get { return state; }
             set
@@ -124,7 +145,13 @@ namespace Ships_JosefLukasek
         public Square Down { get; set; }
         public Square Right { get; set; }
         public Square Left { get; set; }
+        /// <summary>
+        /// The button associated with the square.
+        /// </summary>
         public Button button { get; }
+        /// <summary>
+        /// The ship occupying the square.
+        /// </summary>
         public Ship? ship { get; set; }
         int occupationCounter = 0;
 
@@ -140,8 +167,10 @@ namespace Ships_JosefLukasek
         }
     }
 
-    // Represents the game plan grid and logic.
-    internal class GamePlan
+    /// <summary>
+    /// Represents a game plan with ships and squares.
+    /// </summary>
+    public class GamePlan
     {
         // The form associated with the game plan.
         ShipsForm form;
@@ -161,7 +190,9 @@ namespace Ships_JosefLukasek
         // Predefined counts of ships.
         int[] ships = new[] { 4, 3, 2, 1 };
 
-        // Current state of the game plan.
+        /// <summary>
+        /// The current state of the game plan.
+        /// </summary>
         public PlanState state { get; private set; }
 
         // The ship currently being placed.
@@ -173,9 +204,14 @@ namespace Ships_JosefLukasek
         // The callback action for shooting on a square.
         Action<bool, (int i, int j)> shootCallBack; 
 
-        // Indicates whether the game plan is ready to be locked.
+        /// <summary>
+        /// Indicates whether the game plan is ready to be used because all ships have been placed.
+        /// </summary>
         public bool IsReady { get; private set; } = false;
 
+        /// <summary>
+        /// Indicates how many ship squares have been hit.
+        /// </summary>
         public int hitCounter { get; private set; } = 0;
 
         /// <summary>

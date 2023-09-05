@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Ships_JosefLukasek
 {
+    /// <summary>
+    /// This class is responsible for the GUI of the game.
+    /// </summary>
     public partial class ShipsForm : Form
     {
         // This class is responsible for controlling the state of the game
@@ -24,6 +27,9 @@ namespace Ships_JosefLukasek
         // is true if the player is host
         bool isHost = false;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ShipsForm"/> class.
+        /// </summary>
         public ShipsForm()
         {
             InitializeComponent();

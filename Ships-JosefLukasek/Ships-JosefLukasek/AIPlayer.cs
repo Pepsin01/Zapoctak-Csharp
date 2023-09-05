@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Ships_JosefLukasek
 {
-    // This class is responsible for AI player
-    internal class AIPlayer
+    /// <summary>
+    /// This class is responsible for AI player.
+    /// </summary>
+    public class AIPlayer
     {
         // Predefined plans for AI player ship placement
         string[] predefinedPlans = new string[]
@@ -18,6 +20,10 @@ namespace Ships_JosefLukasek
         };
         
         List<(int, int)> possibleShots = new List<(int, int)>();
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AIPlayer"/> class and generates all possible shots.
+        /// </summary>
         public AIPlayer()
         {
             for (int i = 0; i < 10; i++)

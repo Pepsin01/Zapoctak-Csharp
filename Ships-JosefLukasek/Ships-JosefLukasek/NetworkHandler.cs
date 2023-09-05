@@ -11,7 +11,9 @@ using System.Windows.Forms;
 
 namespace Ships_JosefLukasek
 {
-    // Handles network communication.
+    /// <summary>
+    /// This class is responsible for network communication.
+    /// </summary>
     internal class NetworkHandler
     {
         Socket? handler;
@@ -127,7 +129,6 @@ namespace Ships_JosefLukasek
         /// <summary>
         /// Body of the receive thread. Receives messages from the network and calls the callback.
         /// </summary>
-        /// <param name="callback"> The callback function for received messages. </param>
         private void Receive()
         {
             string data;
