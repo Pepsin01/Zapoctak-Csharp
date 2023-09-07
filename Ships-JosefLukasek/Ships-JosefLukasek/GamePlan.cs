@@ -9,15 +9,6 @@ using System.Drawing;
 namespace Ships_JosefLukasek
 {
     /// <summary>
-    /// Enumeration to represent the state of a square on the grid.
-    /// </summary>
-    public enum SquareState { 
-        Free,
-        Occupied,
-        Hit // The square has been hit by a shot.
-    }
-
-    /// <summary>
     /// Enumeration to represent the state of the game plan.
     /// </summary>
     public enum PlanState { 
@@ -25,146 +16,6 @@ namespace Ships_JosefLukasek
         Placing, // The player is placing ships on the plan.
         Standby, // The player hovers over the plan and is ready to place a ship.
         Hidden // The square content is hidden but the player can click on it.
-    }
-
-    /// <summary>
-    /// Represents a game plan grid.
-    /// </summary>
-    public class Ship
-    {
-        /// <summary>
-        /// Enumeration to specify the direction of the ship.
-        /// </summary>
-        public enum ShipDir { Down, Up, Left, Right }
-
-        /// <summary>
-        /// Current direction of the ship.
-        /// </summary>
-        public ShipDir dir { get; private set; }
-
-        /// <summary>
-        /// Length of the ship.
-        /// </summary>
-        public int Length { get; }
-
-        /// <summary>
-        /// Array to store the squares occupied by the ship.
-        /// </summary>
-        public Square[] occupiedSquares { get; private set; }
-
-        /// <summary>
-        /// Initializes a new ship with the specified length.
-        /// </summary>
-        /// <param name="length">The length of the ship.</param>
-        public Ship(int length)
-        {
-            this.Length = length;
-            dir = ShipDir.Down;
-            occupiedSquares = new Square[(Length * 3) + 2];
-        }
-
-
-        /// <summary>
-        /// Rotates the ship 90 degrees clockwise.
-        /// </summary>
-        /// <returns>The new direction of the ship.</returns>
-        public ShipDir Rotate()
-        {
-            switch (dir)
-            {
-                case ShipDir.Down:
-                    dir = ShipDir.Right;
-                    return dir;
-                case ShipDir.Up:
-                    dir = ShipDir.Left;
-                    return dir;
-                case ShipDir.Left:
-                    dir = ShipDir.Down;
-                    return dir;
-                case ShipDir.Right:
-                    dir = ShipDir.Up;
-                    return dir;
-                default:
-                    return dir;
-            }
-            
-        }
-
-        /// <summary>
-        /// Removes the ship from the grid.
-        /// </summary>
-        public void Remove()
-        {
-            foreach (var s in occupiedSquares)
-                if (s != null)
-                {
-                    s.State = SquareState.Free;
-                    s.ship = null;
-                }
-            occupiedSquares = new Square[(Length * 3) + 2];
-        }
-    }
-
-    /// <summary>
-    /// Represents a square on the game plan grid.
-    /// </summary>
-    public class Square
-    {
-        SquareState state = SquareState.Free;
-
-        /// <summary>
-        /// The current state of the square.
-        /// Setting the state to Occupied increases the occupation counter and setting it to Free decreases it.
-        /// </summary>
-        public SquareState State {
-            get { return state; }
-            set
-            {
-                switch (value)
-                {
-                    case SquareState.Free:
-                        occupationCounter--;
-                        if (occupationCounter <= 0)
-                        {
-                            occupationCounter = 0;
-                            state = SquareState.Free;
-                        }
-                        break;
-                    case SquareState.Occupied:
-                        occupationCounter++;
-                        state = SquareState.Occupied;
-                        break;
-                    case SquareState.Hit:
-                        state = SquareState.Hit;
-                        break;
-                    default:
-                        break;
-                }
-            } }
-        public Square Up { get; set; }
-        public Square Down { get; set; }
-        public Square Right { get; set; }
-        public Square Left { get; set; }
-        /// <summary>
-        /// The button associated with the square.
-        /// </summary>
-        public Button button { get; }
-        /// <summary>
-        /// The ship occupying the square.
-        /// </summary>
-        public Ship? ship { get; set; }
-        int occupationCounter = 0;
-
-        /// <summary>
-        /// Initializes a new square with the specified state and associated button.
-        /// </summary>
-        /// <param name="state">The initial state of the square.</param>
-        /// <param name="button">The button associated with the square.</param>
-        public Square(SquareState state, Button button)
-        {
-            this.state = state;
-            this.button = button;
-        }
     }
 
     /// <summary>
@@ -432,7 +283,7 @@ namespace Ships_JosefLukasek
 
             switch (currentShip.dir)
             {
-                case Ship.ShipDir.Down:
+                case ShipDir.Down:
                     if (IsPositionValid(pos.i, pos.j, 0, 1, currentShip.Length))
                     {
                         if (buildMode)
@@ -448,7 +299,7 @@ namespace Ships_JosefLukasek
                         ColorInvalidSquares(pos.i, pos.j, 0, 1, currentShip.Length);
 
                     break;
-                case Ship.ShipDir.Up:
+                case ShipDir.Up:
                     if (IsPositionValid(pos.i, pos.j, 0, -1, currentShip.Length))
                     {
                         if (buildMode)
@@ -465,7 +316,7 @@ namespace Ships_JosefLukasek
                         ColorInvalidSquares(pos.i, pos.j, 0, -1, currentShip.Length);
 
                     break;
-                case Ship.ShipDir.Left:
+                case ShipDir.Left:
                     if (IsPositionValid(pos.i, pos.j, 1, 0, currentShip.Length))
                     {
                         if (buildMode)
@@ -482,7 +333,7 @@ namespace Ships_JosefLukasek
                         ColorInvalidSquares(pos.i, pos.j, 1, 0, currentShip.Length);
 
                     break;
-                case Ship.ShipDir.Right:
+                case ShipDir.Right:
                     if (IsPositionValid(pos.i, pos.j, -1, 0, currentShip.Length))
                     {
                         if (buildMode)
