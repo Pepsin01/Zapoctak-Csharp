@@ -74,6 +74,12 @@ The translation of the messages follows custom protocol. Every message starts wi
 ### GamePlan
 Can be found in [GamePlan.cs](../Ships-JosefLukasek/Ships-JosefLukasek/GamePlan.cs). This class is responsible for managing the game plan. It contains instances of [Ship](#ship) and [Square](#square). It's main job is to handle game logic and forward it to other classes for further processing. It also contains methods for placing ships on the grid and for shooting at the opponent's ships and other wich are documented in the second part of the documentation.
 
+It can be in one of the following states:
+- Locked - *The plan is locked and cannot be modified.*
+- Placing - *The player is placing ships on the plan.*
+- Standby - *The player hovers over the plan and is ready to place a ship.*
+- Hidden - *The square content is hidden but the player can click on it.*
+
 ### NetworkHandler
 Can be found in [NetworkHandler.cs](../Ships-JosefLukasek/Ships-JosefLukasek/NetworkHandler.cs). This class is responsible for managing the network connection. It contains instances of [Socket](https://docs.microsoft.com/en-us/dotnet/api/system.net.sockets.socket?view=netframework-4.8). It is initialized with the IP address and port number of the other player and callback function which is called when a message is received. Messages are sent using the `Send(string message)` method from arbitrary thread but receiving is done in a separate thread to prevent blocking the main thread. The receiving thread calls the callback function with the received message as an argument. The callback function should be implemented in the class that initialized the NetworkHandler. The NetworkHandler also contains methods for connecting to the other player and for closing the connection.
 
@@ -83,5 +89,16 @@ Can be found in [AIPlayer.cs](../Ships-JosefLukasek/Ships-JosefLukasek/AIPlayer.
 ### Ship
 Can be found in [Ship.cs](../Ships-JosefLukasek/Ships-JosefLukasek/Ship.cs). This class is responsible for managing the ships. It contains instances of [Square](#square). Ship has direction and size. It can be placed on the grid and it can be rotated. It can also be removed from the grid. Any new shapes of ships can be added through this class.
 
+It can be in one of the following states which are used for determining the orientation of the ship:
+- Down - *Default state of the ship*
+- Up - *The ship is rotated 180 degrees*
+- Left - *The ship is rotated 90 degrees to the left*
+- Right - *The ship is rotated 90 degrees to the right*
+
 ### Square
 Can be found in [Square.cs](../Ships-JosefLukasek/Ships-JosefLukasek/Square.cs). This class is responsible for managing the squares. It contains information about the square. It contains information about the state of the square and instance of ship if it's occupied.
+
+It can be in one of the following states:
+- Free - *Default state of the square*
+- Occupied - *The square is occupied by a ship*
+- Hit - *The square is occupied by a ship and it was hit*

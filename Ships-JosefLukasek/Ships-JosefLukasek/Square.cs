@@ -5,8 +5,7 @@ namespace Ships_JosefLukasek
     /// <summary>
     /// Enumeration to represent the state of a square on the grid.
     /// </summary>
-    public enum SquareState
-    {
+    public enum SquareState {
         Free,
         Occupied,
         Hit // The square has been hit by a shot.

@@ -3,7 +3,13 @@
     /// <summary>
     /// Enumeration to specify the direction of the ship.
     /// </summary>
-    public enum ShipDir { Down, Up, Left, Right }
+    public enum ShipDir {
+        Down,
+        Up,
+        Left,
+        Right
+    }
+
     /// <summary>
     /// Represents a game plan grid.
     /// </summary>
